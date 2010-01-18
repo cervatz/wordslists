@@ -1,0 +1,196 @@
+msgid  "main_title"
+msgstr "Main Title ENG" 
+
+msgid  "page_title_users"
+msgstr "Users" 
+
+msgid  "column_title_username"
+msgstr "Username" 
+
+msgid  "column_title_password"
+msgstr "Password" 
+
+msgid  "column_title_first_name"
+msgstr "First name" 
+
+msgid  "column_title_last_name"
+msgstr "Last name" 
+
+msgid  "column_title_administrator"
+msgstr "Admin" 
+
+msgid  "column_title_public"
+msgstr "Public" 
+
+msgid  "column_title_email"
+msgstr "Email" 
+
+msgid  "column_title_country"
+msgstr "Country" 
+
+msgid  "column_title_shared"
+msgstr "Shared" 
+
+msgid  "column_title_created"
+msgstr "Created" 
+
+msgid  "column_title_number_wordslists"
+msgstr "# lists" 
+
+
+
+msgid  "page_title_wordslists"
+msgstr "Wordslists" 
+
+msgid  "column_title_id"
+msgstr "Id" 
+
+msgid  "column_title_description"
+msgstr "Description" 
+
+msgid  "column_title_name"
+msgstr "Name" 
+
+msgid  "column_title_language1"
+msgstr "Language1" 
+
+msgid  "column_title_language2"
+msgstr "Language2" 
+
+msgid  "column_title_number_lines"
+msgstr "# lines" 
+
+msgid  "page_title_lines"
+msgstr "Lines" 
+
+msgid  "column_title_listid"
+msgstr "List id" 
+
+msgid  "column_title_string1"
+msgstr "String 1" 
+
+msgid  "column_title_string2"
+msgstr "String 2" 
+
+msgid  "label_username"
+msgstr "Username" 
+
+msgid  "label_password"
+msgstr "Password" 
+
+msgid  "label_first_name"
+msgstr "First Name" 
+
+msgid  "label_last_name"
+msgstr "Last Name" 
+
+msgid  "label_email"
+msgstr "Email" 
+
+msgid  "label_administrator"
+msgstr "Administrator" 
+
+msgid  "label_public"
+msgstr "Public" 
+
+msgid  "label_language"
+msgstr "Language" 
+
+msgid  "label_language1"
+msgstr "Language 1" 
+
+msgid  "label_language2"
+msgstr "Language 2" 
+
+msgid  "label_mother_language"
+msgstr "Mother language" 
+
+msgid  "label_practice_language"
+msgstr "Practice language" 
+
+msgid  "label_country"
+msgstr "Country" 
+
+msgid  "value_select_language"
+msgstr "Select a language" 
+
+msgid  "value_select_country"
+msgstr "Select a country" 
+
+msgid  ""
+msgstr "" 
+
+msgid  ""
+msgstr "" 
+
+msgid  "message_successfully_logged_in"
+msgstr "You\'ve successfully logged in." 
+
+msgid  "message_successfully_logged_out"
+msgstr "You\'ve successfully logged out." 
+
+msgid  "message_problems_logged_in"
+msgstr "The credentials you entered are not correct." 
+
+msgid  "message_you_must_log_in"
+msgstr "Plesase log in." 
+
+msgid  "message_user_deleted"
+msgstr "The user was deleted." 
+
+msgid  "message_user_saved"
+msgstr "The user was saved." 
+
+msgid  "message_user_modified"
+msgstr "The user was modified." 
+
+msgid  "message_account_created"
+msgstr "Your account has been created" 
+
+msgid  "message_wordlists_created"
+msgstr "Your new wordslist has been created." 
+
+msgid  "message_wordlists_not_created"
+msgstr "Your new wordslist has not been created." 
+
+msgid  "message_wordslist_deleted"
+msgstr "The wordslist was deleted." 
+
+msgid  "message_wordlists_not_yours"
+msgstr "The wordslist is not yours."
+
+msgid  "message_wordslist_shared"
+msgstr "The wordslist was shared." 
+
+msgid  "message_wordslist_unshared"
+msgstr "The wordslist was unshared."  
+
+msgid  "message_line_saved"
+msgstr "Row inserted successfully" 
+
+msgid  "message_line_not_saved"
+msgstr "Problems inserting the row" 
+
+msgid  "message_line_deleted"
+msgstr "Line deleted successfully" 
+
+msgid  "message_line_correct"
+msgstr "Correct" 
+
+msgid  "message_line_correct_is"
+msgstr "The correct word is " 
+
+msgid  ""
+msgstr "" 
+
+msgid  ""
+msgstr "" 
+
+msgid  ""
+msgstr "" 
+
+msgid  ""
+msgstr "" 
+
+
+
