@@ -1,0 +1,27 @@
+div.jGrowl div.manilla {
+background-color:#FFF1C2;
+color:navy;
+}
+
+div.jGrowl div.success {
+background-color:#005500;
+color:#000000;
+}
+
+div.jGrowl div.error {
+background-color:#550000;
+color:#000000;
+}
+
+
+/* use this if you want to use image inside the div - not used at the moment */
+			
+div.jGrowl div.smoke {
+background: url(smoke.png) no-repeat;
+-moz-border-radius: 	0px;
+-webkit-border-radius:	0px;
+width: 					280px;
+height: 				55px;
+overflow: 				hidden;
+}
+

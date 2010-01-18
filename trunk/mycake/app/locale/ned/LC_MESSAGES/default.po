@@ -1,0 +1,3 @@
+msgid  "main_title"
+msgstr "Main Title NED" 
+
