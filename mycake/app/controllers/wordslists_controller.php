@@ -20,6 +20,7 @@ class WordslistsController extends SuperController
 		$this->set('wordslists', $wordslists);
 	}
 
+	// bla bla
 	function mylists()
 	{
 		$this->log('WordslistsController mylists() - entering ...',LOG_DEBUG);
