@@ -53,6 +53,8 @@ class WordslistsController extends SuperController
 
 		$this->pageTitle = 'Add a wordslist';
 		
+		$this->set('myJsFile','WordslistAddForm');
+		
 		if (!empty($this->data)) {
 			$this->data['Wordslist']['user_id']=$this->Security->retrieveUserId();
 
