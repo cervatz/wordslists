@@ -18,8 +18,12 @@
 	<?=$javascript->link('lib/jquery-1.3.1.js'); ?>
 	<?=$javascript->link('lib/jquery.easing.1.3.js'); ?>
     <?=$javascript->link('lib/jquery.lavalamp.1.3.2-min.js'); ?>
-	<?=$javascript->link('lib/jquery.j
-	'); ?>
+	<?=$javascript->link('lib/jquery.jgrowl'); ?>
+	<?=$javascript->link('lib/jquery.validate.js'); ?>
+	
+	<?php 
+		if (empty($myJsFile) == false): echo $this->element($myJsFile); endif;
+	?>
 
 <script type="text/javascript">
 <!--
