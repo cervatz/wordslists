@@ -15,8 +15,8 @@
 
 </tr>
 <tr>
-<td><?=$form->input('string1', array('label' => false));?></td>
-<td><?=$form->input('string2', array('label' => false));?></td>
+<td><?=$form->input('string1', array('label' => false, 'class' => 'required'));?></td>
+<td><?=$form->input('string2', array('label' => false, 'class' => 'required'));?></td>
 </tr>
 
 </table>  
