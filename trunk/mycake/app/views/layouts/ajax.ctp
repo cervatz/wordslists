@@ -19,6 +19,7 @@
 	<?=$javascript->link('lib/jquery.easing.1.3.js'); ?>
     <?=$javascript->link('lib/jquery.lavalamp.1.3.2-min.js'); ?>
 	<?=$javascript->link('lib/jquery.jgrowl'); ?>
+	<?=$javascript->link('lib/jquery.validate.js'); ?>
 
 <script type="text/javascript">
 <!--
@@ -78,7 +79,7 @@
 		$.jGrowl.defaults.closerTemplate = '<div>hide all notifications</div>';        
         
         $("#LineString2").keydown(function(event){
- 	         if(event.keyCode==9) $("form").submit();
+ 	         if(event.keyCode==9 || event.keyCode==13 ) $("form").submit();
         });
         
 		
@@ -87,6 +88,12 @@
 
 -->
 </script>
+
+  <script>
+  $(document).ready(function(){
+    $("#form_id").validate();
+  });
+  </script>
 	 	
 </head>
 <body class="js">
