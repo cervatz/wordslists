@@ -83,10 +83,22 @@ class WordslistsController extends SuperController
 
 		$this->Wordslist->id = $id;
 			
-		$myWordslist = $this->Wordslist->read();
-						
+		$myWordslist = $this->Wordslist->read();		
+		
+		//AU - Modifico l'array $myWordslist aggiungendo una colonna ad ogni oggetto Line
+		//     Aggiungo la colonna check che utilizzo per testare se vengono date risposte corrette 
+		//     al primo colpo
+		foreach ($myWordslist['Line'] as $i => $value) {
+			$myWordslist['Line'][$i]['check'] = 0;
+		}	
+	
+		//$this->log($myWordslist, LOG_DEBUG);
+	
 		// I put in the session context the data for the wordlist and the lines
-		$this->Session->write('Wordslist', $myWordslist);		
+		$this->Session->write('Wordslist', $myWordslist);
+		
+		//AU - Put in the sessions number of words (LINES)
+		$this->Session->write('LineNumber',count($myWordslist['Line']));		
 	
 	}
 	
@@ -113,6 +125,7 @@ class WordslistsController extends SuperController
 	function practice($id = null)
 	{
 		$this->log('WordslistsController practice() - entering ...',LOG_DEBUG);
+		$this->Session->write('rightAnswers', 0);		
 
 		if($this->Security->currentUserOwnsList($id))
 		{
@@ -222,6 +235,12 @@ class WordslistsController extends SuperController
 		}
 		$this->redirect(array('action' => 'mylists'));
 	}
-
+	
+	function result($id=null)
+	{
+		$this->log('WordslistsController result() - entering ...',LOG_DEBUG);
+		
+		$this->set('myJsFile','raphael');
+	}
 }
 ?>
