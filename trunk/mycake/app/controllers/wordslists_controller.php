@@ -236,11 +236,5 @@ class WordslistsController extends SuperController
 		$this->redirect(array('action' => 'mylists'));
 	}
 	
-	function result($id=null)
-	{
-		$this->log('WordslistsController result() - entering ...',LOG_DEBUG);
-		
-		$this->set('myJsFile','raphael');
-	}
 }
 ?>

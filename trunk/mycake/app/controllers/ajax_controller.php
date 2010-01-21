@@ -50,7 +50,7 @@ Class AjaxController extends AppController {
 						unset($myWordslist['Line'][$i]);
 						
 						//TODO: at the moment when the list is finished I redirect to mylists, but I should have a page with the results and statistics
-						if(count($myWordslist['Line'])==0) $this->redirect(array('controller'=>'wordslists','action' => 'result'));
+						if(count($myWordslist['Line'])==0) $this->redirect(array('controller'=>'results','action' => 'result'));
 						
 						$this->log('correct',LOG_DEBUG);
 						$this->Session->write('Wordslist', $myWordslist);
