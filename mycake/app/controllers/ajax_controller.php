@@ -38,10 +38,19 @@ Class AjaxController extends AppController {
     				$this->log($myWordslist['Line'][$i]['string1'],LOG_DEBUG);
     				if($this->data['Line']['string2'] == $myWordslist['Line'][$i]['string2'])
     				{
+    					// AU - Verifico se l'utente ha indovinato al primo colpo la risposta corretta
+    					if ($myWordslist['Line'][$i]['check']==0) {
+    						// AU - salvo in sessione il numero di risposte corrette date al primo colpo
+    						$rightAnswers = $this->Session->read('rightAnswers');
+    						$rightAnswers = $rightAnswers +1;
+    						$this->Session->write('rightAnswers', $rightAnswers);
+    						$this->log('Risposte corrette: '.$rightAnswers,LOG_DEBUG);
+    					}
+    				
 						unset($myWordslist['Line'][$i]);
 						
 						//TODO: at the moment when the list is finished I redirect to mylists, but I should have a page with the results and statistics
-						if(count($myWordslist['Line'])==0) $this->redirect(array('controller'=>'wordslists','action' => 'mylists'));
+						if(count($myWordslist['Line'])==0) $this->redirect(array('controller'=>'wordslists','action' => 'result'));
 						
 						$this->log('correct',LOG_DEBUG);
 						$this->Session->write('Wordslist', $myWordslist);
@@ -51,6 +60,11 @@ Class AjaxController extends AppController {
     					
     				}
     				else{
+    					// AU - Marco che è stata data una risposta sbagliata per questa parola
+    					$myWordslist['Line'][$i]['check']=1;
+    					// AU - Carico $myWordslist in Sessione
+    					$this->Session->write('Wordslist', $myWordslist);
+    					
     					$this->log('wrong',LOG_DEBUG);
 						$this->set('growlStatus', "ko");
 						$this->set('growlMessage', __('message_line_correct_is',true). " " . $myWordslist['Line'][$i]['string2']);					    					
@@ -83,10 +97,10 @@ Class AjaxController extends AppController {
 			$this->data['Line']['wordslist_id'] = $myWordslistId;
 			$this->data['Line']['id'] = $this->findIdNewLine($myWordslistId);
 
-//			$this->log('Line.wordslist_id=' . $this->data['Line']['wordslist_id'],LOG_DEBUG);
-//			$this->log('Line.id=' . $this->data['Line']['id'],LOG_DEBUG);
-//			$this->log('Line.string1=' . $this->data['Line']['string1'],LOG_DEBUG);
-//			$this->log('Line.string2=' . $this->data['Line']['string2'],LOG_DEBUG);
+			$this->log('Line.wordslist_id=' . $this->data['Line']['wordslist_id'],LOG_DEBUG);
+			$this->log('Line.id=' . $this->data['Line']['id'],LOG_DEBUG);
+			$this->log('Line.string1=' . $this->data['Line']['string1'],LOG_DEBUG);
+			$this->log('Line.string2=' . $this->data['Line']['string2'],LOG_DEBUG);
 
 			$this->Line->create();
 			if ($this->Line->save($this->data)) {
@@ -122,6 +136,9 @@ Class AjaxController extends AppController {
 
 		}
 
+		//$this->log('DisableCache',LOG_DEBUG);
+		//per IE... but doesn't work joder
+		//$this->disableCache(); 
 		$this->render('edit', 'ajax');
 		
 	}
