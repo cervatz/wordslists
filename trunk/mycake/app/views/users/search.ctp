@@ -14,6 +14,7 @@
 		<th><?php __('column_title_country') ?></th>
 		<th><?php __('column_title_created') ?></th>
 		<th><?php __('column_title_number_wordslists') ?></th>
+		<th><?php __('column_title_friend_request') ?></th>
 		 	
 	</tr>
 	<?php foreach ($users as $user): ?>
@@ -24,6 +25,7 @@
 		<td><?php echo $user['Country']['description']; ?></td>
 		<td><?php echo $user['User']['created']; ?></td>
 		<td><?php echo count($user['Wordslist']); ?></td>
+		<td><?=$html->link($html->image("icons/adduser.ico"), array('controller'=>'friends', 'action' => 'add', $user['User']['id']), array('escape' => false));?></td>
 		
 	</tr>
 	<?php endforeach; ?>

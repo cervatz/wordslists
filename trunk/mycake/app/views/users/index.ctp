@@ -1,6 +1,6 @@
 <?php // debug($users);?>
 
-<p><?php echo $html->link('/users/add', '/users/add');?>&nbsp;-&nbsp;<?php echo $html->link('/users/search', '/users/search');?><br/><br/></p>
+<p><?php echo $html->link('/users/add', '/users/add');?>&nbsp;-&nbsp;<?php echo $html->link('/users/search', '/users/search');?>&nbsp;-&nbsp;<?php echo $html->link('/friends/myfriends', '/friends/myfriends');?><br/><br/></p>
 
 <table>
 	<tr>
