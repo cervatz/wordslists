@@ -156,6 +156,8 @@ class UsersController extends SuperController
 		$this->log('UsersController create() - entering ...',LOG_DEBUG);
 		
 		$this->pageTitle = 'Create user';
+		
+		$this->set('myJsFile','UserAddForm');
 
 		if (!empty($this->data))
 		{
@@ -245,7 +247,7 @@ class UsersController extends SuperController
 
 		$this->pageTitle = 'Search users';
 		
-		if (!empty($this->data)) {
+		if (!empty($this->data['User']['searchField'])) {
 		
 			$this->log($this->data,LOG_DEBUG);
 			
@@ -258,9 +260,17 @@ class UsersController extends SuperController
 						'conditions' => array('Friend.user_id1' => $this->Security->retrieveUserId())
 				));		
 		
-			foreach ($friends as $friend) {
-				$this->log($friend['Friend']['user_id2'],LOG_DEBUG);
+			//$this->log($friends,LOG_DEBUG);
+			
+			// TODO - AU - Questa non è il massimo come soluzione, ma al momento non sapevo come inserire
+			// TODO - AU - una condizione NOT IN nell'SQL.. ci ho anche provato ma non ne sono venuto fuori
+			// TODO - AU - Creo un array con gli user_id degli utenti già associati all'utente in sessione
+			// TODO - AU - e inserisco una clausola NOT nell'SQL più in basso
+			foreach ($friends as $myarray) {
+				$myfriends[] = $myarray['Friend']['user_id2'];
 			}
+			
+			//$this->log($myfriends,LOG_DEBUG);
 		
 			$users = $this->User->find('all',
 				array(
@@ -271,9 +281,9 @@ class UsersController extends SuperController
 												array('User.email LIKE' => '%'.$this->data['User']['searchField'].'%')
 												),
 										'AND' => array(
-												array('User.public' => 1),
-												array('User.id NOT IN' => $friends['Friend']['user_id2'])
-												)
+												array('User.public' => 1)
+												),
+										"NOT" => array("User.id " => $myfriends)
 										),
 						'order' => array('User.first_name')
 				));
