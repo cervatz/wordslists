@@ -239,5 +239,49 @@ class UsersController extends SuperController
 		}
 	}	
 	
+	function search()
+	{
+		$this->log('UsersController search() - entering ...',LOG_DEBUG);
+
+		$this->pageTitle = 'Search users';
+		
+		if (!empty($this->data)) {
+		
+			$this->log($this->data,LOG_DEBUG);
+			
+			if (App::import('Model', 'Friend')) {			 
+				$this->Friend = new Friend();
+			}			
+			
+			$friends = $this->Friend->find('all',
+				array(
+						'conditions' => array('Friend.user_id1' => $this->Security->retrieveUserId())
+				));		
+		
+			foreach ($friends as $friend) {
+				$this->log($friend['Friend']['user_id2'],LOG_DEBUG);
+			}
+		
+			$users = $this->User->find('all',
+				array(
+						'conditions' => array(
+										'OR' => array(
+												array('User.first_name LIKE' => '%'.$this->data['User']['searchField'].'%'),
+												array('User.last_name LIKE' => '%'.$this->data['User']['searchField'].'%'),
+												array('User.email LIKE' => '%'.$this->data['User']['searchField'].'%')
+												),
+										'AND' => array(
+												array('User.public' => 1),
+												array('User.id NOT IN' => $friends['Friend']['user_id2'])
+												)
+										),
+						'order' => array('User.first_name')
+				));
+
+			$this->set('users', $users);		
+		
+		}		
+	}	
+	
 }
 ?>
