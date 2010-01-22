@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 22 gen, 2010 at 12:39 
+-- Generato il: 22 gen, 2010 at 02:07 
 -- Versione MySQL: 5.1.37
 -- Versione PHP: 5.3.0
 
@@ -228,6 +228,29 @@ INSERT INTO `countries` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `friends`
+--
+
+CREATE TABLE IF NOT EXISTS `friends` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id1` int(10) NOT NULL COMMENT 'Richiedente',
+  `user_id2` int(10) NOT NULL COMMENT 'Richiesto',
+  `status` int(11) NOT NULL COMMENT '0 In attesa 1 Confermata 2 Cancellata',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dump dei dati per la tabella `friends`
+--
+
+INSERT INTO `friends` (`id`, `user_id1`, `user_id2`, `status`, `date`) VALUES
+(1, 1, 22, 1, '2010-01-22 13:08:11'),
+(2, 22, 1, 1, '2010-01-22 13:08:27');
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `languages`
 --
 
@@ -332,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dump dei dati per la tabella `messages`
@@ -344,8 +367,9 @@ INSERT INTO `messages` (`id`, `user_id1`, `user_id2`, `object`, `text`, `new`, `
 (3, 22, 1, 'oggetttone', 'fai proprio schifo cazzo', 0, '2010-01-22 11:19:18'),
 (6, 22, 0, 'Re: Un bel oggetto d''effetto', 'eh c''avrai una bella faccia da culo te allora!', 1, '2010-01-22 12:31:15'),
 (7, 1, 22, 'Re: oggetttone', 'e sticazzi?', 0, '2010-01-22 12:32:20'),
-(8, 22, 1, 'Re: Re: oggetttone', 'anca ancò se ciava doman!', 0, '2010-01-22 12:33:56'),
-(9, 1, 22, 'Re: Re: Re: oggetttone', 'sembra che sta merda funzioni!', 0, '2010-01-22 12:34:24');
+(8, 22, 1, 'Re: Re: oggetttone', 'anca ancÃ² se ciava doman!', 0, '2010-01-22 12:33:56'),
+(9, 1, 22, 'Re: Re: Re: oggetttone', 'sembra che sta merda funzioni!', 0, '2010-01-22 12:34:24'),
+(10, 22, 1, 'Re: Re: Re: Re: oggetttone', 'bea roba', 1, '2010-01-22 13:15:46');
 
 -- --------------------------------------------------------
 
@@ -448,7 +472,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `administrator`, `public`, `f
 (1, 'enrico', 'enrico', 1, 1, 'enrico', 'cervato', 'cervatz@hotmail.com', 81, '0000-00-00'),
 (2, 'judith2', 'judith2', 1, 1, 'judith2', 'conijn2', 'judith@hotmail.com', 125, '0000-00-00'),
 (5, 'mike', 'mike', 1, 1, 'mike', 'bahnan', 'mike@hotmail.com', 96, '0000-00-00'),
-(22, 'andrea', 'andrea', 1, 0, 'andrea', 'andrea', 'andreaurioli@gmail.com', 81, '2010-01-15');
+(22, 'andrea', 'andrea', 1, 1, 'andrea', 'andrea', 'andreaurioli@gmail.com', 81, '2010-01-15');
 
 -- --------------------------------------------------------
 
