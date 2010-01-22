@@ -144,6 +144,12 @@ msgstr "The user was saved."
 msgid  "message_user_modified"
 msgstr "The user was modified." 
 
+msgid  "message_friend"
+msgstr "Friend" 
+
+msgid  "message_friend_request"
+msgstr "Friend request" 
+
 msgid  "message_account_created"
 msgstr "Your account has been created" 
 
@@ -180,8 +186,8 @@ msgstr "Correct"
 msgid  "message_line_correct_is"
 msgstr "The correct word is " 
 
-msgid  ""
-msgstr "" 
+msgid  "column_title_friend_request"
+msgstr "Add to your friends" 
 
 msgid  ""
 msgstr "" 
