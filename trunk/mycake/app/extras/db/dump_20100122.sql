@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: 22 gen, 2010 at 11:35 
+-- Generato il: 22 gen, 2010 at 12:39 
 -- Versione MySQL: 5.1.37
 -- Versione PHP: 5.3.0
 
@@ -332,16 +332,20 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dump dei dati per la tabella `messages`
 --
 
 INSERT INTO `messages` (`id`, `user_id1`, `user_id2`, `object`, `text`, `new`, `date`) VALUES
-(1, 1, 22, 'Un bel oggetto d''effetto', 'Senti volevo dirti una cosa.. va in mona va', 1, '2010-01-22 09:55:36'),
+(1, 1, 22, 'Un bel oggetto d''effetto', 'Senti volevo dirti una cosa.. va in mona va', 0, '2010-01-22 09:55:36'),
 (2, 22, 1, 'non male', 'cosa dici merda?', 1, '2010-01-22 11:18:42'),
-(3, 22, 1, 'oggetttone', 'fai proprio schifo cazzo', 1, '2010-01-22 11:19:18');
+(3, 22, 1, 'oggetttone', 'fai proprio schifo cazzo', 0, '2010-01-22 11:19:18'),
+(6, 22, 0, 'Re: Un bel oggetto d''effetto', 'eh c''avrai una bella faccia da culo te allora!', 1, '2010-01-22 12:31:15'),
+(7, 1, 22, 'Re: oggetttone', 'e sticazzi?', 0, '2010-01-22 12:32:20'),
+(8, 22, 1, 'Re: Re: oggetttone', 'anca ancò se ciava doman!', 0, '2010-01-22 12:33:56'),
+(9, 1, 22, 'Re: Re: Re: oggetttone', 'sembra che sta merda funzioni!', 0, '2010-01-22 12:34:24');
 
 -- --------------------------------------------------------
 
