@@ -33,7 +33,7 @@ class MessagesController extends SuperController
 			
 		$myMessage = $this->Message->read();	
 		
-		$this->log($myMessage,LOG_DEBUG);			
+		//$this->log($myMessage,LOG_DEBUG);			
 	
 		$this->Session->write('Message', $myMessage);
 	
@@ -66,6 +66,15 @@ class MessagesController extends SuperController
 		}
 	}
 	
+	function reply()
+	{
+		$this->log('MessagesController reply() - entering ...',LOG_DEBUG);
+
+		$this->pageTitle = 'New Message';
+		
+		$this->set('myJsFile','MessageAddForm');
+	}	
+	
 	function view($id = null)
 	{
 		$this->log('MessagesController edit() - entering ...',LOG_DEBUG);
@@ -73,6 +82,10 @@ class MessagesController extends SuperController
 		if($this->Security->currentUserMessage($id))
 		{
 			$this->loadAndSetMessage($id);
+			
+			//TODO testate che new non sia già a 0 sennò fa sempre update
+			$this->Message->saveField('new', 0);
+			
 		}
 		else{
 
