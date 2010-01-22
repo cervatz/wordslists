@@ -3,6 +3,7 @@
 	<li><?php echo $html->link('Users', array('controller'=>'users', 'action' => 'index'), array('escape' => false));?></li>
 	<li><?php echo $html->link('My wordslists', array('controller'=>'wordslists', 'action' => 'mylists'), array('escape' => false));?></li>
 	<li><?php echo $html->link('Languages', array('controller'=>'languages', 'action' => 'index'), array('escape' => false));?></li>
+	<li><?php echo $html->link('Messages', array('controller'=>'messages', 'action' => 'mymessages'), array('escape' => false));?></li>	
 	<li><?php echo $html->link('Search', array('controller'=>'search', 'action' => 'index'), array('escape' => false));?></li>	
 	<li><?php echo $html->link('Log out', array('controller'=>'users', 'action' => 'logout'), array('escape' => false));?></li>
 </ul>
