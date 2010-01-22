@@ -39,11 +39,17 @@ class MessagesController extends SuperController
 	
 	}	
 	
-	function add()
+	function add($id = null)
 	{
-		$this->log('MessagesController add() - entering ...',LOG_DEBUG);
+		$this->log('MessagesController add() - entering ...'.$id,LOG_DEBUG);
 		
-		$this->set('users',$this->Utility->getUsers());
+		if ($id==null) {
+			$this->set('users',$this->Utility->getFriends());
+		} else {
+			$this->set('users',$this->Utility->getUsers($id));
+		}
+		
+		//$this->log($this->Utility->getUsers($id),LOG_DEBUG);		
 
 		$this->pageTitle = 'New Message';
 		
