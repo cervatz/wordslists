@@ -97,10 +97,10 @@ Class AjaxController extends AppController {
 			$this->data['Line']['wordslist_id'] = $myWordslistId;
 			$this->data['Line']['id'] = $this->findIdNewLine($myWordslistId);
 
-			$this->log('Line.wordslist_id=' . $this->data['Line']['wordslist_id'],LOG_DEBUG);
-			$this->log('Line.id=' . $this->data['Line']['id'],LOG_DEBUG);
-			$this->log('Line.string1=' . $this->data['Line']['string1'],LOG_DEBUG);
-			$this->log('Line.string2=' . $this->data['Line']['string2'],LOG_DEBUG);
+//			$this->log('Line.wordslist_id=' . $this->data['Line']['wordslist_id'],LOG_DEBUG);
+//			$this->log('Line.id=' . $this->data['Line']['id'],LOG_DEBUG);
+//			$this->log('Line.string1=' . $this->data['Line']['string1'],LOG_DEBUG);
+//			$this->log('Line.string2=' . $this->data['Line']['string2'],LOG_DEBUG);
 
 			$this->Line->create();
 			if ($this->Line->save($this->data)) {
