@@ -25,7 +25,9 @@
 		<td><?=$wordslist['Wordslist']['shared']; ?></td>
 		<td><?=$html->link($html->image("icons/textfile.ico"), array('controller'=>'wordslists', 'action' => 'view', $wordslist['Wordslist']['id']), array('escape' => false));?></td>		
 		<td><?=$html->link($html->image("icons/edit.ico"), array('controller'=>'wordslists', 'action' => 'edit', $wordslist['Wordslist']['id']), array('escape' => false));?></td>
-		<td><?=$html->link('practice', array('controller'=>'wordslists', 'action' => 'practice', $wordslist['Wordslist']['id']), array('escape' => false));?></td>
+		<td>
+			<?if (count($wordslist['Line'])>0): echo $html->link('practice', array('controller'=>'wordslists', 'action' => 'practice', $wordslist['Wordslist']['id']), array('escape' => false)); endif;?>
+		</td>
 		<td>
 			<?php
 				if($wordslist['Wordslist']['shared'] == 1) echo $html->link('unshare', array('controller'=>'wordslists', 'action' => 'unshare', $wordslist['Wordslist']['id']), array('escape' => false));
