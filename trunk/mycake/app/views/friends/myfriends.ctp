@@ -22,17 +22,19 @@
 	<?php endforeach; ?>
 </table>
 
+<?php if (count($requests)>0) { ?>
+
+Qualcuno ha richiesto la tua amicizia:
+
 <table>
-	<tr>
-		<th><?php __('column_title_id') ?></th>		
+	<tr>	
 		<th><?php __('column_title_username') ?></th>
 		<th><?php __('column_title_first_name') ?></th>
 		<th><?php __('column_title_last_name') ?></th>	
 		<th><?php __('column_title_confirm') ?></th>	
 	</tr>
 	<?php foreach ($requests as $request): ?>
-	<tr>
-		<td><?php echo $request['User1']['id']; ?></td>		
+	<tr>		
 		<td><?php echo $request['User1']['username']; ?></td>
 		<td><?php echo $request['User1']['first_name']; ?></td>
 		<td><?php echo $request['User1']['last_name']; ?></td>	
@@ -40,3 +42,5 @@
 	</tr>	
 	<?php endforeach; ?>
 </table>	
+
+<?php } ?>
