@@ -26,6 +26,28 @@ class UtilityComponent extends Object {
 			
 		return $languages; 
 	}
+	
+	function getUsers()
+	{
+
+		if (App::import('Model', 'User')) {			 
+			$this->User = new User();
+		}
+
+		$users = $this->User->find
+			(
+				'list',  
+				array
+					(
+                     'fields' => array('id', 'username', 'first_name', 'last_name'),  
+                     'order' => 'username ASC',  
+                     'recursive' => -1  
+				)
+			);
+			
+			
+		return $users; 
+	}	
 
 	function getCountries()
 	{

@@ -28,5 +28,22 @@ class SecurityComponent extends Object {
 	}
 
 
+	function currentUserMessage($message_id){
+		
+		$this->log('MessagesController currentUserMessage() - entering ...',LOG_DEBUG);
+		
+		if (App::import('Model', 'Message')) {			 
+			$this->Message = new Message();
+		}		
+
+		$this->log("message_id=" . $message_id, LOG_DEBUG);
+
+		$count = $this->Message->find('count', array('conditions' => array('Message.id' => $message_id,'Message.user_id2' => $this->Session->read('User.id'))));
+
+		if ($count==1) return true;
+		else return false;
+	}
+
+
 }
 ?>
