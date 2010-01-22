@@ -12,6 +12,14 @@ class User extends AppModel
 		'Message2' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id2',
+			),		
+	    'Friend1' => array(
+			'className' => 'Friend',
+			'foreignKey' => 'user_id1',
+			),
+		'Friend2' => array(
+			'className' => 'Friend',
+			'foreignKey' => 'user_id2',
 			));
 		
 	var $belongsTo = array(
