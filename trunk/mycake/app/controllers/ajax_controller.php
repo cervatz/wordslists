@@ -102,8 +102,11 @@ Class AjaxController extends AppController {
 //			$this->log('Line.string1=' . $this->data['Line']['string1'],LOG_DEBUG);
 //			$this->log('Line.string2=' . $this->data['Line']['string2'],LOG_DEBUG);
 
-			$this->Line->create();
-			if ($this->Line->save($this->data)) {
+//			$this->Line->create($this->data);
+
+			$this->Line->query("INSERT INTO lines(wordlist_id, id, string1, string2) VALUES(".$this->data['Line']['wordslist_id'].",".$this->data['Line']['id'].",'".$this->data['Line']['string1']."','".$this->data['Line']['string2']."')");
+			
+			if ($this->Line->insert($this->data)) {
 				
 				// After the insert I reload the wordslist from the DB
 				$this->Wordslist->id = $myWordslistId;
