@@ -104,7 +104,8 @@ Class AjaxController extends AppController {
 
 //			$this->Line->create($this->data);
 
-			$this->Line->query("INSERT INTO lines(wordlist_id, id, string1, string2) VALUES(".$this->data['Line']['wordslist_id'].",".$this->data['Line']['id'].",'".$this->data['Line']['string1']."','".$this->data['Line']['string2']."')");
+			$sql = "INSERT INTO mycake.lines VALUES ('".$this->data['Line']['wordslist_id']."','".$this->data['Line']['id']."','".$this->data['Line']['string1']."','".$this->data['Line']['string2']."')";
+			$this->Line->query($sql);
 			
 			if ($this->Line->insert($this->data)) {
 				
@@ -129,7 +130,7 @@ Class AjaxController extends AppController {
 			}
 			else{
 					
-				$this->log('AjaxController PROBLEMS INSERTING THE ROW',LOG_DEBUG);
+				$this->log('AjaxController PROBLEMS INSERTING THE ROW '.$sql,LOG_DEBUG);
 					
 				$this->set('growlStatus', "ko");
 				$this->set('growlMessage', __('message_line_not_saved',true));
