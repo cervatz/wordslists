@@ -104,10 +104,19 @@ Class AjaxController extends AppController {
 
 //			$this->Line->create($this->data);
 
-			$sql = "INSERT INTO mycake.lines VALUES ('".$this->data['Line']['wordslist_id']."','".$this->data['Line']['id']."','".$this->data['Line']['string1']."','".$this->data['Line']['string2']."')";
-			$this->Line->query($sql);
+			$sql = "INSERT INTO mycake.lines WVALUES ('".$this->data['Line']['wordslist_id']."','".$this->data['Line']['id']."','".$this->data['Line']['string1']."','".$this->data['Line']['string2']."');";
+
+			/* TODO - AU 2010-01-28 - Ho commentato la IF che NON SO PERCHE' torna sempre FALSE sta merda, 
+			nonostante scriva su DB e tutto funzioni correttamente, chiaro che bisogna gestire
+			l'errore in qualche modo.
+			Le istruzioni tipo SAVE, INSERT di cakephp non funzionano ed è per quello che ho introdotto
+			la query($sql), altrimenti lo stronzo andava sempre in UPDATE, non tenendo conto della doppia
+			chiave ID di Line e ID di Wordslist
+			 */
 			
-			if ($this->Line->insert($this->data)) {
+/*			if ($this->Line->query($sql)) {*/
+			
+				$this->Line->query($sql);
 				
 				// After the insert I reload the wordslist from the DB
 				$this->Wordslist->id = $myWordslistId;
@@ -127,7 +136,7 @@ Class AjaxController extends AppController {
 				$this->data['Line']['string1']='';
 				$this->data['Line']['string2']='';
 				
-			}
+/*			}
 			else{
 					
 				$this->log('AjaxController PROBLEMS INSERTING THE ROW '.$sql,LOG_DEBUG);
@@ -136,7 +145,7 @@ Class AjaxController extends AppController {
 				$this->set('growlMessage', __('message_line_not_saved',true));
 				
 				//$this->redirect(array('controller' => 'wordslists','action' => 'mylists'));
-			}
+			}*/
 
 		}
 
