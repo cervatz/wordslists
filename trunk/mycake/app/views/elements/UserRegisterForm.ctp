@@ -1,11 +1,4 @@
 <script type="text/javascript">
-jQuery.validator.setDefaults({
-	debug: true,
-	success: "valid"
-});;
-</script>
-
-  <script>
   $(document).ready(function(){
     $("#UserRegisterForm").validate({
   rules: {
@@ -22,7 +15,7 @@ jQuery.validator.setDefaults({
       email: true
     },
     password2: {
-	  equalTo: "#password"
+     equalTo: "#password"
     }			
   }
 });
