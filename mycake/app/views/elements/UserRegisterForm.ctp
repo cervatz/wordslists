@@ -1,5 +1,30 @@
-  <script type="text/javascript">
+<script type="text/javascript">
+jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+});;
+</script>
+
+  <script>
   $(document).ready(function(){
-    $("#UserRegisterForm").validate();
+    $("#UserRegisterForm").validate({
+  rules: {
+    password: {
+      required: true,
+      minlength: 8
+    },
+    username: {
+      required: true,
+      minlength: 8
+    },
+    email: {
+      required: true,
+      email: true
+    },
+    password2: {
+	  equalTo: "#password"
+    }			
+  }
+});
   });
   </script>
