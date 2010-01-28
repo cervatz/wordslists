@@ -31,7 +31,7 @@ class User extends AppModel
 
 	//TODO: improve validation checks
 	
-	var $validate = array(
+/*	var $validate = array(
 		'username'=>array(
     		'alphaNumeric'=>array(
         		'rule'=>'alphaNumeric',
@@ -56,7 +56,7 @@ class User extends AppModel
 			'message' => 'Please supply a valid email address.'
 		),
 		'country_id' => VALID_NOT_EMPTY
-	);
+	);*/
 
 	function validateLogin($data)
 	{		
