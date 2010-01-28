@@ -3,7 +3,7 @@ class UsersController extends SuperController
 {
 	var $name = "Users";
 	
-	var $components = array('Security','Utility','Email');
+	var $components = array('Security','Utility','Email','MathCaptcha');
 
 	var $uses = array('User','Mother','Practice');
 	
@@ -182,24 +182,33 @@ class UsersController extends SuperController
 
 		if (!empty($_POST['username']))
 		{
-			//$this->log($_REQUEST,LOG_DEBUG);
-			
-			//$this->data['User']['username']=$_POST['username'];
-			//$this->data['User']['password']=$_POST['password'];
-			//$this->data['User']['email']=$_POST['email'];
-			
-			if ($this->User->save($_REQUEST))
-			{
-				$this->Email->to = $_POST['email']; 
-				$this->Email->subject = 'Conferma registrazione';
-				$this->Email->body = 'Registrazione completata con successo';
-				$result = $this->Email->send();  
-									
-				$this->Session->setFlash(__('message_user_saved',true));
+			if ($this->MathCaptcha->validates($this->data['User']['security_code'])) {
+				//$this->log($_REQUEST,LOG_DEBUG);
 				
-				$this->redirect(array('action' => 'index'));
+				//$this->data['User']['username']=$_POST['username'];
+				//$this->data['User']['password']=$_POST['password'];
+				//$this->data['User']['email']=$_POST['email'];
+				
+				if ($this->User->save($_REQUEST))
+				{
+					$this->Email->to = $_POST['email']; 
+					$this->Email->subject = 'Conferma registrazione';
+					$this->Email->body = 'Registrazione completata con successo';
+					$result = $this->Email->send();  
+										
+					$this->Session->setFlash(__('message_user_saved',true));
+					
+					$this->redirect(array('action' => 'index'));
+				}				
 			}
+            else {
+            	$this->Session->write('username', $_POST['username']);
+            	$this->Session->write('email', $_POST['email']);
+                $this->Session->setFlash(__('Please enter the correct answer to the math question.', true));
+            }
+			
 		}
+		$this->set('mathCaptcha', $this->MathCaptcha->generateEquation());
 	}	
 	
 	function delete($id)
@@ -260,7 +269,7 @@ class UsersController extends SuperController
 
 	function __validateLoginStatus()
 	{
-		$this->log('UsersController __validateLoginStatus() - entering ...',LOG_DEBUG);
+		$this->log('UsersController __validateLoginStatus() - entering <'.$this->action.'>',LOG_DEBUG);
 		
 		if($this->action != 'login' && $this->action != 'logout' && $this->action != 'register')
 		{
@@ -323,7 +332,6 @@ class UsersController extends SuperController
 			$this->set('users', $users);		
 		
 		}		
-	}	
-	
+	}
 }
 ?>
