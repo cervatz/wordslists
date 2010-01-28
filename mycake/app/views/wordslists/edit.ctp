@@ -16,6 +16,7 @@
 
 
 <?php echo $ajax->div('dynamic1'); ?>
+
 <span>
 <table>
 	<tr>
