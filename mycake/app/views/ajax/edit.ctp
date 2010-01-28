@@ -10,6 +10,15 @@
 
 <table>
 <tr>
+	<th colspan="2">
+		<?php 
+			$myarray = $session->read('Wordslist');
+			echo $myarray['Wordslist']['name'].' - '.$myarray['Wordslist']['description'];
+		?>		
+	</th>
+</tr>
+<tr><td colspan="2">&nbsp;</td></tr>		
+<tr>
 <th><?=$session->read('Wordslist.Language1.description')?></th>
 <th><?=$session->read('Wordslist.Language2.description')?></th>
 
@@ -24,8 +33,6 @@
 <?=$form->end(); ?>
    
 </div>
-
-
 
 <?php echo $ajax->div('dynamic1'); ?>
 <span>
