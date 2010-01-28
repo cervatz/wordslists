@@ -76,7 +76,10 @@ msgid  "label_username"
 msgstr "Username" 
 
 msgid  "label_password"
-msgstr "Password" 
+msgstr "Password"
+
+msgid  "label_password_again"
+msgstr "Password again"  
 
 msgid  "label_first_name"
 msgstr "First Name" 
