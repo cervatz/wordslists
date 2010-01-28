@@ -104,7 +104,7 @@ Class AjaxController extends AppController {
 
 //			$this->Line->create($this->data);
 
-			$sql = "INSERT INTO mycake.lines WVALUES ('".$this->data['Line']['wordslist_id']."','".$this->data['Line']['id']."','".$this->data['Line']['string1']."','".$this->data['Line']['string2']."');";
+			$sql = "INSERT INTO mycake.lines VALUES ('".$this->data['Line']['wordslist_id']."','".$this->data['Line']['id']."','".$this->data['Line']['string1']."','".$this->data['Line']['string2']."');";
 
 			/* TODO - AU 2010-01-28 - Ho commentato la IF che NON SO PERCHE' torna sempre FALSE sta merda, 
 			nonostante scriva su DB e tutto funzioni correttamente, chiaro che bisogna gestire
