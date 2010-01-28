@@ -3,7 +3,7 @@ class UsersController extends SuperController
 {
 	var $name = "Users";
 	
-	var $components = array('Security','Utility');
+	var $components = array('Security','Utility','Email');
 
 	var $uses = array('User','Mother','Practice');
 	
@@ -174,16 +174,27 @@ class UsersController extends SuperController
 	
 	function register()
 	{
-		$this->log('UsersController create() - entering ...',LOG_DEBUG);
+		$this->log('UsersController register() - entering ...',LOG_DEBUG);
 		
 		$this->pageTitle = 'Create user';
 		
 		$this->set('myJsFile','UserRegisterForm');
 
-		if (!empty($this->data))
+		if (!empty($_POST['username']))
 		{
-			if ($this->User->save($this->data))
+			//$this->log($_REQUEST,LOG_DEBUG);
+			
+			//$this->data['User']['username']=$_POST['username'];
+			//$this->data['User']['password']=$_POST['password'];
+			//$this->data['User']['email']=$_POST['email'];
+			
+			if ($this->User->save($_REQUEST))
 			{
+				$this->Email->to = $_POST['email']; 
+				$this->Email->subject = 'Conferma registrazione';
+				$this->Email->body = 'Registrazione completata con successo';
+				$result = $this->Email->send();  
+									
 				$this->Session->setFlash(__('message_user_saved',true));
 				
 				$this->redirect(array('action' => 'index'));
