@@ -82,15 +82,17 @@ class UsersController extends SuperController
 		
 		$this->set('languages', $this->Session->read('Languages'));
 		
-		$this->log('UsersController add() - 1',LOG_DEBUG);
+		//$this->log('UsersController add() - 1',LOG_DEBUG);
+		
+		$this->set('myJsFile','UserAddForm');
 						
 		if (!empty($this->data))
 		{		
-			$this->log('UsersController add() - 2',LOG_DEBUG);
+			//$this->log('UsersController add() - 2',LOG_DEBUG);
 			
 			$this->User->create();
 			
-			$this->log('UsersController add() - 3',LOG_DEBUG);
+			//$this->log('UsersController add() - 3',LOG_DEBUG);
 			
 			// TODO perform all the checks
 
@@ -99,7 +101,7 @@ class UsersController extends SuperController
 			
 			if ($this->User->save($this->data))
 			{
-				$this->log('UsersController add() - 4',LOG_DEBUG);
+				//$this->log('UsersController add() - 4',LOG_DEBUG);
 				
 				$newUser=$this->User->read();
 								
@@ -140,7 +142,7 @@ class UsersController extends SuperController
 				}
 				
 				
-				$this->log('UsersController add() - 5',LOG_DEBUG);		
+				//$this->log('UsersController add() - 5',LOG_DEBUG);		
 		
 				$this->Session->setFlash(__('message_user_saved',true));
 								
@@ -169,6 +171,25 @@ class UsersController extends SuperController
 			}
 		}
 	}
+	
+	function register()
+	{
+		$this->log('UsersController create() - entering ...',LOG_DEBUG);
+		
+		$this->pageTitle = 'Create user';
+		
+		$this->set('myJsFile','UserRegisterForm');
+
+		if (!empty($this->data))
+		{
+			if ($this->User->save($this->data))
+			{
+				$this->Session->setFlash(__('message_user_saved',true));
+				
+				$this->redirect(array('action' => 'index'));
+			}
+		}
+	}	
 	
 	function delete($id)
 	{
@@ -230,7 +251,7 @@ class UsersController extends SuperController
 	{
 		$this->log('UsersController __validateLoginStatus() - entering ...',LOG_DEBUG);
 		
-		if($this->action != 'login' && $this->action != 'logout')
+		if($this->action != 'login' && $this->action != 'logout' && $this->action != 'register')
 		{
 			if($this->Session->check('User') == false)
 			{
