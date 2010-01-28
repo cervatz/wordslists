@@ -7,7 +7,8 @@
 	<li><?php echo $form->password('password', array(array('label' => __('label_password'), true). 'type'=>'text', 'value'=>'')); ?></li>
 </ul>
 <?php echo $form->end('Submit');?>    
-    
+
+<?php echo $html->link('/users/register', '/users/register');?>    
     
 </div> 
 
