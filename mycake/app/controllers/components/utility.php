@@ -107,5 +107,25 @@ class UtilityComponent extends Object {
 		
 		return $countries;
 	}
+	
+	function newUser($username, $email)
+	{
+
+		if (App::import('Model', 'User')) {			 
+			$this->User = new User();
+		}
+
+		$count = $this->User->find
+			(
+				'count',  
+				array( 'OR' => array (
+				'username' => $username,
+				'email' => $email)
+				)
+			);			
+			
+		if ($count==0) return true;
+		else return false;
+	}	
 }
 ?>
