@@ -189,17 +189,26 @@ class UsersController extends SuperController
 				//$this->data['User']['password']=$_POST['password'];
 				//$this->data['User']['email']=$_POST['email'];
 				
-				if ($this->User->save($_REQUEST))
-				{
-					$this->Email->to = $_POST['email']; 
-					$this->Email->subject = 'Conferma registrazione';
-					$this->Email->body = 'Registrazione completata con successo';
-					$result = $this->Email->send();  
-										
-					$this->Session->setFlash(__('message_user_saved',true));
+				if ($this->Utility->newUser($_POST['username'], $_POST['email'])) {
 					
-					$this->redirect(array('action' => 'index'));
-				}				
+					if ($this->User->save($_REQUEST))
+					{
+						$this->Email->to = $_POST['email']; 
+						$this->Email->subject = 'Conferma registrazione';
+						$this->Email->body = 'Registrazione completata con successo';
+						$result = $this->Email->send();  
+											
+						$this->Session->setFlash(__('message_user_saved',true));
+						
+						$this->redirect(array('action' => 'index'));
+					}									
+					
+				}
+				else {
+	            	$this->Session->write('username', $_POST['username']);
+	            	$this->Session->write('email', $_POST['email']);
+	                $this->Session->setFlash(__('Username or Email in use', true));
+				}
 			}
             else {
             	$this->Session->write('username', $_POST['username']);
