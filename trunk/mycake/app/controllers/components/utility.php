@@ -107,7 +107,5 @@ class UtilityComponent extends Object {
 		
 		return $countries;
 	}
-	
-
 }
 ?>
