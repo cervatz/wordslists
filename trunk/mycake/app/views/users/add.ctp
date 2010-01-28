@@ -10,7 +10,7 @@
 	<li><?=$form->input('public', array('label' => __('label_public', true), 'type'=>'checkbox', 'value'=>'', 'class' => 'required')); ?> </li>
 	<li><?=$form->input('first_name', array('label' => __('label_first_name', true), 'type'=>'text', 'value'=>'', 'class' => 'required')); ?> </li>
 	<li><?=$form->input('last_name', array('label' => __('label_last_name', true), 'type'=>'text', 'value'=>'', 'class' => 'required')); ?> </li>	
-	<li><?=$form->input('email', array('label' => __('label_email', true), 'type'=>'text', 'value'=>'', 'class' => 'required')); ?> </li>
+	<li><?=$form->input('email', array('label' => __('label_email', true), 'type'=>'text', 'value'=>'', 'class' => 'required email')); ?> </li>
 	<li>
 	<?=$form->input('country_id',array(  
         	'label' => __('label_country', true),
