@@ -25,6 +25,8 @@ class WordslistsController extends SuperController
 	{
 		$this->log('WordslistsController mylists() - entering ...',LOG_DEBUG);
 		$this->pageTitle = 'My words lists';
+		
+		$this->set('myJsFile','WordslistListForm');
 
 		$wordslists = $this->Wordslist->find('all',
 			array(
