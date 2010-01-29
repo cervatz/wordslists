@@ -3,7 +3,7 @@ class UsersController extends SuperController
 {
 	var $name = "Users";
 	
-	var $components = array('Security','Utility','Email','MathCaptcha');
+	var $components = array('Security','Utility','Email','MathCaptcha','Cookie');
 
 	var $uses = array('User','Mother','Practice');
 	
@@ -41,7 +41,7 @@ class UsersController extends SuperController
 	{
 		$this->log('UsersController edit() - entering ...',LOG_DEBUG);
 		
-		$this->log('id=' . $id, LOG_DEBUG);
+		//$this->log('id=' . $id, LOG_DEBUG);
 		
 		$this->pageTitle = 'User\'s detail page';
 		
@@ -235,9 +235,29 @@ class UsersController extends SuperController
 	function login()
 	{
 		$this->log('UsersController login() - entering ...',LOG_DEBUG);
+		//$this->log('id['.$this->Cookie->read('Id').']', LOG_DEBUG);
 		
+		if ($this->Cookie->read('Id')!=null) {
+		// E' presente il cookie, carico le impostazioni utente
+
+			$this->log('UsersController login() - valid cookie ...',LOG_DEBUG);
+			
+			$id = $this->Cookie->read('Id');
+			$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
+			$this->data['User'] = $user['User'];
+/*			
+			$this->Session->write('User', $user);	
+			
+			$this->Session->setFlash(__('message_successfully_logged_in',true));
+
+			$this->Session->write('Countries', $this->Utility->getCountries());				
+			$this->Session->write('Languages', $this->Utility->getLanguages());			
+			
+			$this->redirect(array('controller'=>'wordslists','action' => 'mylists'));	
+*/					
+		} 
+			
 		$this->pageTitle = 'Login';
-		
 		$this->layout = 'login';
 
 		if(empty($this->data) == false)
@@ -246,12 +266,14 @@ class UsersController extends SuperController
 			
 			if($user!=null)
 			{
+				// Scrivo array utente in sessione
 				$this->Session->write('User', $user);
+				//Salvo cookie con username
+				$this->Cookie->write('Id',$user['id']);
 				
 				$this->Session->setFlash(__('message_successfully_logged_in',true));
 				
-				$this->Session->write('Countries', $this->Utility->getCountries());
-				
+				$this->Session->write('Countries', $this->Utility->getCountries());				
 				$this->Session->write('Languages', $this->Utility->getLanguages());			
 				
 				$this->redirect(array('controller'=>'wordslists','action' => 'mylists'));
@@ -262,7 +284,7 @@ class UsersController extends SuperController
 
 				$this->redirect(array('action' => 'login'));
 			}
-		}
+		}			
 	}
 
 	function logout()
@@ -270,6 +292,7 @@ class UsersController extends SuperController
 		$this->log('UsersController logout() - entering ...',LOG_DEBUG);
 		
 		$this->Session->destroy('user');
+		$this->Cookie->del('Id');
 				
 		$this->Session->setFlash(__('message_successfully_logged_out',true));
 		
