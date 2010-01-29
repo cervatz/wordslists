@@ -36,7 +36,7 @@ Class AjaxController extends AppController {
     			if($myWordslist['Line'][$i]['id'] == $this->data['Line']['id'])
     			{
     				$this->log($myWordslist['Line'][$i]['string1'],LOG_DEBUG);
-    				if($this->data['Line']['string2'] == $myWordslist['Line'][$i]['string2'])
+    				if(strtoupper(trim($this->data['Line']['string2'])) == strtoupper(trim($myWordslist['Line'][$i]['string2'])))
     				{
     					// AU - Verifico se l'utente ha indovinato al primo colpo la risposta corretta
     					if ($myWordslist['Line'][$i]['check']==0) {
