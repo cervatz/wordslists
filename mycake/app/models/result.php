@@ -2,6 +2,7 @@
 class Result extends AppModel
 {
 	var $name = 'Result';
+	
 	var $belongsTo = array(
 				 'Wordslist' =>
                  array('className'    => 'Wordslist',

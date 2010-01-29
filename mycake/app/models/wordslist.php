@@ -3,7 +3,7 @@ class Wordslist extends AppModel
 {
 	var $name = 'Wordslist';
 	
-	var $hasMany = array(
+	var $hasMany = array('Result',
 		'Line' => array(
 		'className' => 'Line',
 		'foreignKey' => 'wordslist_id',
