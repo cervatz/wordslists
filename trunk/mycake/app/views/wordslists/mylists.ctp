@@ -1,5 +1,5 @@
 
-<p><?php echo $html->link('/wordslists/add', '/wordslists/add');?><br/><br/></p>
+<p><?php echo $html->link('/wordslists/add', '/wordslists/add');?> - <?php echo $html->link('/results/myresults', '/results/myresults');?><br/><br/></p>
 
 <table>
 	<tr>

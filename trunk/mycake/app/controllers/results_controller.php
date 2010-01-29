@@ -28,5 +28,18 @@ class ResultsController extends SuperController
 		
 		$this->set('myJsFile','raphael');
 	}	
+
+	function myresults()
+	{
+		$this->log('ResultsController result() - myresults ...',LOG_DEBUG);
+		
+		$myUser = $this->Session->read('User');
+
+		$results = $this->Results->find('all', array('conditions' => array('user_id' => $myUser['id']),
+				'order' => array('wordslist_id')));
+		$this->log($results,LOG_DEBUG);
+		
+		$this->set('results', $results);
+	}	
 	
 }

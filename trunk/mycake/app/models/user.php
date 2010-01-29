@@ -4,7 +4,7 @@ class User extends AppModel
 {
 	var $name = 'User';
 
-	var $hasMany = array('Wordslist','Mother','Practice',		
+	var $hasMany = array('Wordslist','Mother','Practice','Result',	
 	    'Message1' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id1',
