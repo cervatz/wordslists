@@ -34,8 +34,16 @@
 				else echo $html->link('share', array('controller'=>'wordslists', 'action' => 'share', $wordslist['Wordslist']['id']), array('escape' => false));
 			?>
 		</td>
-		<td><?=$html->link($html->image("icons/delete.ico"), array('controller'=>'wordslists', 'action' => 'delete', $wordslist['Wordslist']['id']), array('escape' => false));?></td>		
+		<td><div id='confirm-dialog'><?=$html->link($html->image("icons/delete.ico"), array('controller'=>'wordslists', 'action' => 'delete', $wordslist['Wordslist']['id']), array('escape' => false, 'class' => 'confirm'));?></div></td>		
 	</tr>
 	<?php endforeach; ?>
 
 </table>
+
+<div id='confirm'>
+	<div class='header'><span>Confirm</span></div>
+	<p class='message'></p>
+	<div class='buttons'>
+		<div class='no simplemodal-close'>No</div><div class='yes'>Yes</div>
+	</div>
+</div>
