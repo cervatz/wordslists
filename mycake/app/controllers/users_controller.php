@@ -14,7 +14,6 @@ class UsersController extends SuperController
 
 	function index()
 	{
-	//enrico test
 		$this->log('UsersController index() - entering ...',LOG_DEBUG);
 		
 		$this->pageTitle = 'Users index';
