@@ -172,6 +172,8 @@ class UsersController extends SuperController
 		}
 	}
 	
+	
+	//test
 	function register()
 	{
 		$this->log('UsersController register() - entering ...',LOG_DEBUG);
