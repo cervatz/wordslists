@@ -58,13 +58,22 @@ class User extends AppModel
 		'country_id' => VALID_NOT_EMPTY
 	);*/
 
-	function validateLogin($data)
+	function validateLogin($id, $username, $password)
 	{		
-		$this->log("validateLogin - before",LOG_DEBUG);
-		$user = $this->find(array('username' => $data['username'], 'password' => $data['password']));
+		$this->log("validateLogin - entering ...",LOG_DEBUG);
+		
+		if(!empty($id)){
+			$this->log("validateLogin - authentication with cookie",LOG_DEBUG);
+			$user = $this->find('first', array('conditions' => array('User.id' => $id)));			
+		}
+		else if((!empty($username)) and (!empty($password))){
+			$this->log("validateLogin - authentication with username and password",LOG_DEBUG);
+			$user = $this->find(array('username' => $username, 'password' => $password));	
+		}
 
 		//pr($user);
-		
+		$this->log("validateLogin - leaving ...",LOG_DEBUG);
+				
 		if(empty($user) == false) return $user['User'];
 		return false;
 	}
