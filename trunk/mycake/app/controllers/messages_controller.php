@@ -16,9 +16,7 @@ class MessagesController extends SuperController
 			array(
 				'conditions' => array('Message.user_id2' => $this->Security->retrieveUserId()),
 				'order' => array('Message.date DESC')
-			));
-			
-		//$this->log($messages,LOG_DEBUG);	
+			));			
 
 		$this->set('messages', $messages);
 		

@@ -20,13 +20,14 @@ class WordslistsController extends SuperController
 		$this->set('wordslists', $wordslists);
 	}
 
-	// bla bla
 	function mylists()
 	{
 		$this->log('WordslistsController mylists() - entering ...',LOG_DEBUG);
 		$this->pageTitle = 'My words lists';
 		
 		$this->set('myJsFile','WordslistListForm');
+
+		$this->Wordslist->unbindModel(array('hasMany' => array('Result')));
 
 		$wordslists = $this->Wordslist->find('all',
 			array(
@@ -35,14 +36,6 @@ class WordslistsController extends SuperController
 			));
 
 		$this->set('wordslists', $wordslists);
-		
-	}
-
-	function test()
-	{
-		$this->log('WordslistsController mylists() - entering ...',LOG_DEBUG);
-		//TODO: to take away. now it is pointing to the test layout
-		$this->layout = 'test';
 		
 	}
 	
@@ -84,8 +77,10 @@ class WordslistsController extends SuperController
 		$this->log("id=".$id, LOG_DEBUG);
 
 		$this->Wordslist->id = $id;
-			
-		$myWordslist = $this->Wordslist->read();		
+
+		$this->Wordslist->unbindModel(array('hasMany' => array('Result')));
+		
+		$myWordslist = $this->Wordslist->read();
 		
 		//AU - Modifico l'array $myWordslist aggiungendo una colonna ad ogni oggetto Line
 		//     Aggiungo la colonna check che utilizzo per testare se vengono date risposte corrette 
