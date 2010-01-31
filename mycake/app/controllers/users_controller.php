@@ -18,6 +18,8 @@ class UsersController extends SuperController
 		
 		$this->pageTitle = 'Users index';
 		
+		$this->User->unbindModel(array('hasMany' => array('Message1','Message2','Friend1','Friend2','Mother','Practice','Result')));
+		
 		$users=$this->User->findAll();
 		
 		$this->set('users', $this->User->findAll());
@@ -25,7 +27,7 @@ class UsersController extends SuperController
 	
 	function view($id = null)
 	{
-		//TODO: make the user's view page in a nice way
+
 		$this->log('UsersController view() - entering ...',LOG_DEBUG);
 		
 		$this->log('id=' . $id, LOG_DEBUG);
@@ -40,8 +42,6 @@ class UsersController extends SuperController
 	function edit($id = null)
 	{
 		$this->log('UsersController edit() - entering ...',LOG_DEBUG);
-		
-		//$this->log('id=' . $id, LOG_DEBUG);
 		
 		$this->pageTitle = 'User\'s detail page';
 		

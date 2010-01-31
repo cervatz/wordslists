@@ -40,6 +40,8 @@ class FriendsController extends SuperController
 		$this->log('FriendsController myfriends() - entering ...',LOG_DEBUG);
 		$this->pageTitle = 'My friends';
 		
+		$this->Friend->unbindModel(array('hasMany' => array('Message1','Message2')));
+		
 		$friends = $this->Friend->find('all',
 			array(
 				'conditions' => array('Friend.user_id1' => $this->Security->retrieveUserId()),
