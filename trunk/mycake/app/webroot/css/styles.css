@@ -43,12 +43,6 @@ font-family:"lucida grande",verdana,helvetica,arial,sans-serif;
 font-size:12px;
 color:#333;
 
-/* enrico to show the background or not */
-
-//background:url(../pattern/pattern_063.gif) repeat;
-}
-
-
 /*
 *  General Style Info
 */
@@ -329,7 +323,6 @@ body.js #central{
 
 #footer {
     color: #fff;
-    //background: #003d4c url(../img/footer_bg_2.png) no-repeat right top;
     background:url(../img/footer_bg_2.png) no-repeat right top;
     padding:20px 10px;
     text-align: right;
