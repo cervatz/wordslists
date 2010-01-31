@@ -235,34 +235,32 @@ class UsersController extends SuperController
 	function login()
 	{
 		$this->log('UsersController login() - entering ...',LOG_DEBUG);
-		//$this->log('id['.$this->Cookie->read('Id').']', LOG_DEBUG);
+
+		$id = "";
+		$username = "";
+		$password = "";
 		
-		if ($this->Cookie->read('Id')!=null) {
-		// E' presente il cookie, carico le impostazioni utente
-
-			$this->log('UsersController login() - valid cookie ...',LOG_DEBUG);
-			
-			$id = $this->Cookie->read('Id');
-			$user = $this->User->find('first', array('conditions' => array('User.id' => $id)));
-			$this->data['User'] = $user['User'];
-/*			
-			$this->Session->write('User', $user);	
-			
-			$this->Session->setFlash(__('message_successfully_logged_in',true));
-
-			$this->Session->write('Countries', $this->Utility->getCountries());				
-			$this->Session->write('Languages', $this->Utility->getLanguages());			
-			
-			$this->redirect(array('controller'=>'wordslists','action' => 'mylists'));	
-*/					
-		} 
-			
 		$this->pageTitle = 'Login';
 		$this->layout = 'login';
-
-		if(empty($this->data) == false)
+		
+		if ($this->Cookie->read('Id')!=null) {
+			$this->log('UsersController login() - valid cookie ...',LOG_DEBUG);			
+			$id = $this->Cookie->read('Id');
+		} 
+					
+		if(!empty($this->data)){
+			$username = $this->data['User']['username'];
+			$password = $this->data['User']['password'];
+		}			
+		
+		if(!empty($id) or ((!empty($username)) and (!empty($password))))	
 		{		
-			$user = $this->User->validateLogin($this->data['User']);
+			if(!empty($id)){			
+				$user = $this->User->validateLogin($id,"","");	
+			}
+			else if((!empty($username)) and (!empty($password))){
+				$user = $this->User->validateLogin("",$username,$password);
+			}			
 			
 			if($user!=null)
 			{
@@ -273,7 +271,8 @@ class UsersController extends SuperController
 				
 				$this->Session->setFlash(__('message_successfully_logged_in',true));
 				
-				$this->Session->write('Countries', $this->Utility->getCountries());				
+				$this->Session->write('Countries', $this->Utility->getCountries());
+								
 				$this->Session->write('Languages', $this->Utility->getLanguages());			
 				
 				$this->redirect(array('controller'=>'wordslists','action' => 'mylists'));
