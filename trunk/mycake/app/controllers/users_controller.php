@@ -199,8 +199,8 @@ class UsersController extends SuperController
 						$this->Email->from = "cervatz@hotmail.com"; 
 						$this->Email->to = $_POST['email']; 
 						$this->Email->subject = 'Conferma registrazione';
-						$this->Email->body = 'Registrazione completata con successo';
-						$result = $this->Email->send();  
+						$body = 'Registrazione completata con successo';
+						$result = $this->Email->send($body);
 											
 						$this->Session->setFlash(__('message_user_saved',true));
 						
