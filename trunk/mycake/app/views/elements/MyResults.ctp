@@ -23,3 +23,5 @@
 	<?php endforeach; ?>
 	
 </script>
+
+<?=$html->css('jqBarGraph.css'); ?>
