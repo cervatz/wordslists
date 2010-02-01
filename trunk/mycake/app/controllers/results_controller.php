@@ -35,11 +35,33 @@ class ResultsController extends SuperController
 		
 		$myUser = $this->Session->read('User');
 
-		$results = $this->Results->find('all', array('conditions' => array('user_id' => $myUser['id']),
-				'order' => array('wordslist_id')));
-		$this->log($results,LOG_DEBUG);
+		$sql = "SELECT DISTINCT Wordlist.id, Wordlist.name, Wordlist.description ".
+		" FROM mycake.results Result, mycake.wordslists Wordlist ".
+		"WHERE Result.user_id=".$myUser['id'].
+		"  AND Result.wordslist_id = Wordlist.id ".
+		"ORDER BY Wordlist.name ";
 		
-		$this->set('results', $results);
+/*		$results = $this->Results->find('all', array('conditions' => array('user_id' => $myUser['id']),
+				'order' => array('wordslist_id')));*/
+		$wordslists = $this->Results->query($sql);
+		//$this->log($wordslists,LOG_DEBUG);
+		
+		$i=0;
+		foreach ($wordslists as $wordlist) {
+			$sql = "SELECT Result.result FROM mycake.results Result WHERE Result.wordslist_id = " . $wordlist['Wordlist']['id'] . " ORDER BY Result.date";
+			$results = $this->Results->query($sql);
+			$myResults = '';
+			foreach ($results as $result) {
+				$myResults = $myResults.'['.$result['Result']['result'].']';
+			}
+			$wordslists[$i]['Wordlist']['Results']=str_replace('][','],[',$myResults);
+			$i=$i+1;
+		}
+		//$this->log($wordslists,LOG_DEBUG);
+		
+		$this->set('wordslists', $wordslists);
+		
+		$this->set('myJsFile','MyResults');
 	}	
 	
 }
