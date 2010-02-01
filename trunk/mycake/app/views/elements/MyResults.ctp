@@ -15,6 +15,7 @@
 				barSpace: 3,
 				animate: true,
 				speed: 3,
+				postfix: '%',
 				title: '<?=$wordslist['Wordlist']['name']; ?><br /><small><?=$wordslist['Wordlist']['description']; ?></small>'
 			});
 		});
