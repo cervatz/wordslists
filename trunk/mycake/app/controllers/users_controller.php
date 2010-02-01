@@ -189,7 +189,7 @@ class UsersController extends SuperController
 				//$this->data['User']['password']=$_POST['password'];
 				//$this->data['User']['email']=$_POST['email'];
 				
-				if ($this->Utility->newUser($_POST['username'], $_POST['email'])) {
+				if ($this->newUser($_POST['username'], $_POST['email'])) {
 					
 					if ($this->User->save($_REQUEST))
 					{
@@ -364,5 +364,17 @@ class UsersController extends SuperController
 		
 		}		
 	}
+	
+	
+	function newUser($username, $email)
+	{
+		$this->log('newUser entering.. username['.$username.'] email['.$email.']',LOG_DEBUG);
+
+		$sql = "select count(*) as count from mycake.users where username='".$username."' or email='".$email."'";
+		$count = $this->User->query($sql);
+		
+		if ($count[0][0]['count']==null || $count[0][0]['count']>0) return false;
+		else return true;
+	}		
 }
 ?>
