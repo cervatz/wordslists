@@ -1,7 +1,3 @@
-<table>
-	<?php foreach ($results as $result): ?>
-	<tr>
-		<td><?=$result['Result']['id']; ?></td>
-	</tr>
-	<?php endforeach; ?>
-</table>
+<?php foreach ($wordslists as $wordslist): ?>	
+	<div id="<?='array'.$wordslist['Wordlist']['id']; ?>"></div><br />
+<?php endforeach; ?>
