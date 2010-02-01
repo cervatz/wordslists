@@ -48,11 +48,13 @@ class ResultsController extends SuperController
 		
 		$i=0;
 		foreach ($wordslists as $wordlist) {
-			$sql = "SELECT Result.result FROM mycake.results Result WHERE Result.wordslist_id = " . $wordlist['Wordlist']['id'] . " ORDER BY Result.date";
+			$sql = "SELECT Result.result, DATE_FORMAT(Result.date,'%d/%m/%Y') as date FROM mycake.results Result WHERE Result.wordslist_id = " . $wordlist['Wordlist']['id'] . " ORDER BY Result.date";
 			$results = $this->Results->query($sql);
+			$this->log($results,LOG_DEBUG);
 			$myResults = '';
 			foreach ($results as $result) {
-				$myResults = $myResults.'['.$result['Result']['result'].']';
+				//$myResults = $myResults."[".$result["Result"]["result"].",'".$result["0"]["date"]."']";
+				$myResults = $myResults."[".$result["Result"]["result"]."]";
 			}
 			$wordslists[$i]['Wordlist']['Results']=str_replace('][','],[',$myResults);
 			$i=$i+1;
