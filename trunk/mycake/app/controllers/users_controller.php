@@ -12,7 +12,7 @@ class UsersController extends SuperController
 		$this->__validateLoginStatus();
 	}
 
-	function index()
+	function admin_index()
 	{
 		$this->log('UsersController index() - entering ...',LOG_DEBUG);
 		
@@ -25,7 +25,7 @@ class UsersController extends SuperController
 		$this->set('users', $this->User->findAll());
 	}
 	
-	function view($id = null)
+	function admin_view($id = null)
 	{
 
 		$this->log('UsersController view() - entering ...',LOG_DEBUG);
@@ -39,7 +39,7 @@ class UsersController extends SuperController
 		$this->set('user', $this->User->find('first', array('conditions' => array('User.id' => $id))));
 	}
 
-	function edit($id = null)
+	function admin_edit($id = null)
 	{
 		$this->log('UsersController edit() - entering ...',LOG_DEBUG);
 		
@@ -66,13 +66,16 @@ class UsersController extends SuperController
 			}
 		}
 		else{
+			
+			$this->User->unbindModel(array('hasMany' => array('Message1','Message2','Friend1','Friend2','Mother','Practice','Result')));
+			
 			$myUser=$this->User->find('first', array('conditions' => array('User.id' => $id)));
 			
 			$this->set('user', $myUser);	
 		}
 	}	
 	
-	function add()
+	function admin_add()
 	{
 		$this->log('UsersController add() - entering ...',LOG_DEBUG);
 		
@@ -193,6 +196,7 @@ class UsersController extends SuperController
 					
 					if ($this->User->save($_REQUEST))
 					{
+						$this->Email->from = "cervatz@hotmail.com"; 
 						$this->Email->to = $_POST['email']; 
 						$this->Email->subject = 'Conferma registrazione';
 						$this->Email->body = 'Registrazione completata con successo';
@@ -220,7 +224,7 @@ class UsersController extends SuperController
 		$this->set('mathCaptcha', $this->MathCaptcha->generateEquation());
 	}	
 	
-	function delete($id)
+	function admin_delete($id)
 	{
 		$this->log('UsersController delete()',LOG_DEBUG);
 		
@@ -302,6 +306,19 @@ class UsersController extends SuperController
 	{
 		$this->log('UsersController __validateLoginStatus() - entering <'.$this->action.'>',LOG_DEBUG);
 		
+			
+		
+		$stringAdmin = strpos($this->action ,'admin');
+		
+		
+		if(!(strpos($this->action ,'admin') === false)) {
+			$this->log('It is an admin page',LOG_DEBUG);
+		}
+		else {
+			$this->log('NOT admin page',LOG_DEBUG);
+
+		}
+		
 		if($this->action != 'login' && $this->action != 'logout' && $this->action != 'register')
 		{
 			if($this->Session->check('User') == false)
@@ -310,6 +327,23 @@ class UsersController extends SuperController
 				
 				$this->Session->setFlash(__('message_you_must_log_in',true));
 			}
+			if(!(strpos($this->action ,'admin') === false)) {
+				
+				// The url contains 'admin' ... I will check if the user is admin
+				
+				$this->log('User.administrator=' . $this->Session->read('User.administrator'),LOG_DEBUG);
+				
+				if($this->Session->read('User.administrator') == 0){
+					
+					$this->log('User is not administrator',LOG_DEBUG);
+					
+					$this->redirect(array('admin'=>false, 'controller' => 'errors', 'action' => 'denied'));
+				
+					$this->Session->setFlash(__('message_you_must_be_admin',true));					
+				}
+								
+			}
+			
 		}
 	}	
 	
