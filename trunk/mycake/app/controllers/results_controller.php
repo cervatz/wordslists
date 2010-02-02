@@ -57,6 +57,7 @@ class ResultsController extends SuperController
 				$myResults = $myResults."[".$result["Result"]["result"]."]";
 			}
 			$wordslists[$i]['Wordlist']['Results']=str_replace('][','],[',$myResults);
+			$wordslists[$i]['Wordlist']['numResults']=count($results);
 			$i=$i+1;
 		}
 		//$this->log($wordslists,LOG_DEBUG);
