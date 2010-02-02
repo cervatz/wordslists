@@ -271,12 +271,11 @@ class UsersController extends SuperController
 				// Scrivo array utente in sessione
 				$this->Session->write('User', $user);
 				//Salvo cookie con username
-				$this->Cookie->write('Id',$user['id']);
+				$this->Cookie->write('Id',$user['id'],true,604800);
 				
 				$this->Session->setFlash(__('message_successfully_logged_in',true));
 				
 				$this->Session->write('Countries', $this->Utility->getCountries());
-								
 				$this->Session->write('Languages', $this->Utility->getLanguages());			
 				
 				$this->redirect(array('controller'=>'wordslists','action' => 'mylists'));
