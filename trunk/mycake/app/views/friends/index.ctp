@@ -1,3 +1,5 @@
+<?php echo $html->link('/users/search', '/users/search');?>
+<br /><br />
 <table>
 	<tr>
 		<th><?php __('column_title_username') ?></th>
