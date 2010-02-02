@@ -150,8 +150,14 @@ msgstr "The user was modified."
 msgid  "message_friend"
 msgstr "Friend" 
 
+msgid  ""
+msgstr ""
+
 msgid  "message_friend_request"
 msgstr "Friend request" 
+
+msgid  "message_you_have_no_friends"
+msgstr "You have no friends"
 
 msgid  "message_account_created"
 msgstr "Your account has been created" 

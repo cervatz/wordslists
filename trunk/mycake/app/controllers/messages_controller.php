@@ -42,31 +42,39 @@ class MessagesController extends SuperController
 		$this->log('MessagesController add() - entering ...'.$id,LOG_DEBUG);
 		
 		if ($id==null) {
-			$this->set('users',$this->Utility->getFriends());
+			$users = $this->Utility->getFriends();
 		} else {
-			$this->set('users',$this->Utility->getUsers($id));
+			$users = $this->Utility->getUsers($id);
 		}
 		
-		//$this->log($this->Utility->getUsers($id),LOG_DEBUG);		
+		//$this->log($this->Utility->getUsers($id),LOG_DEBUG);
 
-		$this->pageTitle = 'New Message';
-		
-		$this->set('myJsFile','MessageAddForm');
-		
-		if (!empty($this->data)) {
-			$this->data['Message']['user_id1']=$this->Security->retrieveUserId();
-
-			if ($this->Message->save($this->data)) {
+		if ($users!=null) {
+			
+			$this->set('users',$users);
+			
+			$this->pageTitle = 'New Message';
+			
+			$this->set('myJsFile','MessageAddForm');
+			
+			if (!empty($this->data)) {
+				$this->data['Message']['user_id1']=$this->Security->retrieveUserId();
+	
+				if ($this->Message->save($this->data)) {
+									
+					$this->Session->setFlash(__('message_messages_created',true));
+													
+					$this->redirect(array('controller'=>'messages','action' => 'mymessages'));
+				}
+				else{
+					
+					$this->Session->setFlash(__('message_messages_not_created',true));
 								
-				$this->Session->setFlash(__('message_messages_created',true));
-												
-				$this->redirect(array('controller'=>'messages','action' => 'mymessages'));
-			}
-			else{
-				
-				$this->Session->setFlash(__('message_messages_not_created',true));
-							
-			}
+				}
+			}			
+		} else {
+			$this->Session->setFlash(__('message_you_have_no_friends',true));
+			$this->redirect(array('controller'=>'messages','action' => 'mymessages'));	
 		}
 	}
 	
