@@ -70,22 +70,29 @@ class UtilityComponent extends Object {
 		// TODO - AU - una condizione NOT IN nell'SQL.. ci ho anche provato ma non ne sono venuto fuori
 		// TODO - AU - Creo un array con gli user_id degli utenti già associati all'utente in sessione
 		// TODO - AU - e inserisco una clausola NOT nell'SQL più in basso
+		$myfriends = null;
 		foreach ($friends as $myarray) {
 			$myfriends[] = $myarray['Friend']['user_id2'];
 		}	
+
+		if ($myfriends!=null) {
+		
+			$users = $this->User->find
+				(
+					'list',  
+					array
+						('conditions' => array("User.id" => $myfriends),
+	                     'fields' => array('id', 'username', 'first_name', 'last_name'),  
+	                     'order' => 'username ASC',  
+	                     'recursive' => -1  
+					)
+				);			
+				
+			return $users; 			
+		} else {
 			
-		$users = $this->User->find
-			(
-				'list',  
-				array
-					('conditions' => array("User.id" => $myfriends),
-                     'fields' => array('id', 'username', 'first_name', 'last_name'),  
-                     'order' => 'username ASC',  
-                     'recursive' => -1  
-				)
-			);			
-			
-		return $users; 
+			return null; 
+		}
 	}	
 
 	function getCountries()
