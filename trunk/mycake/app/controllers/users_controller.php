@@ -196,12 +196,9 @@ class UsersController extends SuperController
 					
 					if ($this->User->save($_REQUEST))
 					{
-						$this->Email->from = "cervatz@hotmail.com"; 
-						$this->Email->to = $_POST['email']; 
-						$this->Email->subject = 'Conferma registrazione';
-						$body = 'Registrazione completata con successo';
-						$result = $this->Email->send($body);
-											
+
+						$this->sendRegistrationMail($_POST['email'], $_POST['username'], $_POST['password']);
+						
 						$this->Session->setFlash(__('message_user_saved',true));
 						
 						$this->redirect(array('action' => 'index'));
@@ -223,6 +220,31 @@ class UsersController extends SuperController
 		}
 		$this->set('mathCaptcha', $this->MathCaptcha->generateEquation());
 	}	
+	
+	
+	function sendRegistrationMail($email, $username, $password) {
+		$this->log("sendRegistrationMail() - entering ...",LOG_DEBUG);
+				
+		$this->Email->to = $email;
+		
+		$this->Email->subject = 'Registrazione completata con successo';
+		
+		$this->Email->replyTo = 'cervatz@hotmail.com';
+		
+		$this->Email->from = 'Super cool website <cervatz@hotmail.com>';
+		
+		$this->Email->template = 'registration';
+		
+		//Send as 'html', 'text' or 'both' (default is 'text')
+		$this->Email->sendAs = 'both';
+				
+		$this->set('username', $username);
+		$this->set('password', $password);
+		
+		$this->Email->send();
+		
+		$this->log("sendRegistrationMail() - leaving ...",LOG_DEBUG);
+	}
 	
 	function admin_delete($id)
 	{
