@@ -24,7 +24,7 @@ class FriendsController extends SuperController
 								
 				$this->Session->setFlash(__('message_friends_created',true));
 												
-				$this->redirect(array('controller'=>'friends','action' => 'myfriends'));
+				$this->redirect(array('controller'=>'friends','action' => 'index'));
 			}
 			else{
 				
@@ -35,9 +35,9 @@ class FriendsController extends SuperController
 		}
 	}
 	
-	function myfriends()
+	function index()
 	{
-		$this->log('FriendsController myfriends() - entering ...',LOG_DEBUG);
+		$this->log('FriendsController index() - entering ...',LOG_DEBUG);
 		$this->pageTitle = 'My friends';
 		
 		$this->Friend->unbindModel(array('hasMany' => array('Message1','Message2')));
@@ -91,7 +91,7 @@ class FriendsController extends SuperController
 			
 				if ($this->Friend->save($this->data)) {
 					$this->Session->setFlash(__('message_friends_created',true));												
-					$this->redirect(array('controller'=>'friends','action' => 'myfriends'));				
+					$this->redirect(array('controller'=>'friends','action' => 'index'));				
 				}			
 				else{
 					$this->Session->setFlash(__('message_friends_not_updated',true));
