@@ -1,16 +1,21 @@
 <div id="top_left_nav">
-<ul id="lavaLampBorderOnly" class="navigation">	
-	<?php if(empty($user['User']['administrator'])) {?>
-		<li><?php echo $html->link('Users', array('admin' => false, 'controller'=>'friends', 'action' => 'index'), array('escape' => false));?></li>
+<?php 
+$styles = array('users'=>'','friends'=>'','wordslists'=>'','languages'=>'','messages'=>'','search'=>'');
+if(isset($menu)) $styles[$menu]='current'; 
+?>
+
+<ul class="navigation">	
+	<?php if($session->read('User.administrator') == 1) {?>
+			<li class="<?=$styles['users']?>"><?php echo $html->link('Users', array('admin' => true, 'controller'=>'users', 'action' => 'index'), array('escape' => false));?></li>
 	<?php } else {?>
-		<?php if($user['User']['administrator']==1) {?>
-			<li><?php echo $html->link('Users', array('admin' => true, 'controller'=>'users', 'action' => 'index'), array('escape' => false));?></li>
+		<?php if($user['User']['administrator']==1) {?>			
+			<li class="<?=$styles['friends']?>"><?php echo $html->link('Friends', array('admin' => false, 'controller'=>'friends', 'action' => 'index'), array('escape' => false));?></li>
 		<?php }?>	
 	<?php }?>
-	<li><?php echo $html->link('My wordslists', array('admin' => false, 'controller'=>'wordslists', 'action' => 'mylists'), array('escape' => false));?></li>
-	<li><?php echo $html->link('Languages', array('admin' => false, 'controller'=>'languages', 'action' => 'index'), array('escape' => false));?></li>
-	<li><?php echo $html->link('Messages', array('admin' => false, 'controller'=>'messages', 'action' => 'mymessages'), array('escape' => false));?></li>	
-	<li><?php echo $html->link('Search', array('admin' => false, 'controller'=>'search', 'action' => 'index'), array('escape' => false));?></li>	
+	<li class="<?=$styles['wordslists']?>"><?php echo $html->link('My wordslists', array('admin' => false, 'controller'=>'wordslists', 'action' => 'mylists'), array('escape' => false));?></li>
+	<li class="<?=$styles['languages']?>"><?php echo $html->link('Languages', array('admin' => false, 'controller'=>'languages', 'action' => 'index'), array('escape' => false));?></li>
+	<li class="<?=$styles['messages']?>"><?php echo $html->link('Messages', array('admin' => false, 'controller'=>'messages', 'action' => 'mymessages'), array('escape' => false));?></li>	
+	<li class="<?=$styles['search']?>"><?php echo $html->link('Search', array('admin' => false, 'controller'=>'search', 'action' => 'index'), array('escape' => false));?></li>	
 	<li><?php echo $html->link('Log out', array('admin' => false, 'controller'=>'users', 'action' => 'logout'), array('escape' => false));?></li>
 </ul>
 </div>

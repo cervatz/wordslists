@@ -9,49 +9,16 @@
 	
     <?=$html->meta('icon');?>
     
-	<?=$html->css('styles'); ?>
-
-	<?=$html->css('lavalamp'); ?>	 	
+	<?=$html->css('styles'); ?>	 	
 	<?=$html->css('jquery.jgrowl'); ?>
 	<?=$html->css('mygrowl'); ?>
 
 	<?=$javascript->link('lib/jquery-1.3.1.js'); ?>
-	<?=$javascript->link('lib/jquery.easing.1.3.js'); ?>
-    <?=$javascript->link('lib/jquery.lavalamp.1.3.2-min.js'); ?>
 	<?=$javascript->link('lib/jquery.jgrowl'); ?>
 	<?=$javascript->link('lib/jquery.validate.js'); ?>
 
 <script type="text/javascript">
 <!--
-	var query = new Object();
-	window.location.search.replace(
-	new RegExp( "([^?=&]+)(=([^&]*))?", 'g' ),
-		function( $0, $1, $2, $3 ){
-			query[ $1 ] = $3;
-		}
-	);
-	easing = query['e'] || 'Expo';
-	
-	function loadEasing(e) {
-		location.href = location.pathname+'?e='+e;
-	}
-	
-	function setEasing(e) {
-		loadLamps(e);
-	}
-
-
-//TODO: set the correct value for the selected item	
-// for dynamic easing changes		
-	function loadLamps(easing) {
-		$('#lavaLampBorderOnly').lavaLamp({
-			fx: 'easeInOut'+easing,
-			speed: 1000,
-			returnDelay:1000,
-			startItem:3
-		});
-	}
-
 
 	function growlSuccess(string){
 		$.jGrowl(string, { header: 'A Header', theme:  'success', life: 3000, speed:  'slow'});
@@ -65,12 +32,6 @@
 	
 // jquery initialize:
 	$(function() {
-		$('#menu').lavaLamp({fx: 'swing', speed: 333});
-		loadLamps(easing);
-		
-		$('select#easing option[value='+easing+']').attr('selected','selected');
-		$('.easingLabel').text(easing);
-
 		// This value can be true, false or a function to be used as a callback when the closer is clciked
 		$.jGrowl.defaults.closer = function() {
 			console.log("Closing everything!", this);
