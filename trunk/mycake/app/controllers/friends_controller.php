@@ -7,6 +7,11 @@ class FriendsController extends SuperController
 
 	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
 	
+	function beforeRender()
+	{
+		$this->set('menu', 'friends');
+	}
+	
 	function add($id)
 	{
 		$this->log('FriendsController add() - entering ...',LOG_DEBUG);

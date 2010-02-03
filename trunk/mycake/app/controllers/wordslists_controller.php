@@ -7,6 +7,11 @@ class WordslistsController extends SuperController
 
 	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
 
+	function beforeRender()
+	{
+		$this->set('menu', 'wordslists');
+	}
+	
 	function index()
 	{
 		$this->log('WordslistsController index() - entering ...',LOG_DEBUG);

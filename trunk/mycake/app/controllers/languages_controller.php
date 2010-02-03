@@ -3,6 +3,11 @@ class LanguagesController extends SuperController
 {
 	var $name = 'Languages';
 
+	function beforeRender()
+	{
+		$this->set('menu', 'languages');
+	}	
+	
 	function index()
 	{
 		$this->log('LanguagesController index() - entering ...',LOG_DEBUG);

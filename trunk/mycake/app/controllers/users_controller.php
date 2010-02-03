@@ -12,17 +12,24 @@ class UsersController extends SuperController
 		$this->__validateLoginStatus();
 	}
 
+	function beforeRender()
+	{
+		$this->set('menu', 'users');
+	}
+	
 	function admin_index()
 	{
-		$this->log('UsersController index() - entering ...',LOG_DEBUG);
+		$this->log('UsersController admin_index() - entering ...',LOG_DEBUG);
 		
 		$this->pageTitle = 'Users index';
 		
 		$this->User->unbindModel(array('hasMany' => array('Message1','Message2','Friend1','Friend2','Mother','Practice','Result')));
 		
 		$users=$this->User->findAll();
-		
+				
 		$this->set('users', $this->User->findAll());
+		
+		$this->log('UsersController admin_index() - leaving ...',LOG_DEBUG);
 	}
 	
 	function admin_view($id = null)
@@ -327,18 +334,14 @@ class UsersController extends SuperController
 	{
 		$this->log('UsersController __validateLoginStatus() - entering <'.$this->action.'>',LOG_DEBUG);
 		
-			
-		
 		$stringAdmin = strpos($this->action ,'admin');
 		
-		
-		if(!(strpos($this->action ,'admin') === false)) {
-			$this->log('It is an admin page',LOG_DEBUG);
-		}
-		else {
-			$this->log('NOT admin page',LOG_DEBUG);
-
-		}
+//		if(!(strpos($this->action ,'admin') === false)) {
+//			$this->log('It is an admin page',LOG_DEBUG);
+//		}
+//		else {
+//			$this->log('NOT admin page',LOG_DEBUG);
+//		}
 		
 		if($this->action != 'login' && $this->action != 'logout' && $this->action != 'register')
 		{
@@ -352,11 +355,11 @@ class UsersController extends SuperController
 				
 				// The url contains 'admin' ... I will check if the user is admin
 				
-				$this->log('User.administrator=' . $this->Session->read('User.administrator'),LOG_DEBUG);
+				//$this->log('User.administrator=' . $this->Session->read('User.administrator'),LOG_DEBUG);
 				
 				if($this->Session->read('User.administrator') == 0){
 					
-					$this->log('User is not administrator',LOG_DEBUG);
+					//$this->log('User is not administrator',LOG_DEBUG);
 					
 					$this->redirect(array('admin'=>false, 'controller' => 'errors', 'action' => 'denied'));
 				
