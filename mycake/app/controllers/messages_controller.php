@@ -7,6 +7,11 @@ class MessagesController extends SuperController
 
 	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
 	
+	function beforeRender()
+	{
+		$this->set('menu', 'messages');
+	}
+	
 	function mymessages()
 	{
 		$this->log('MessagesController mymessages() - entering ...',LOG_DEBUG);

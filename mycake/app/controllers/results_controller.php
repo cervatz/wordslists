@@ -7,6 +7,11 @@ class ResultsController extends SuperController
 
 	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
 	
+	function beforeRender()
+	{
+		$this->set('menu', 'wordslists');
+	}	
+	
 	function result($id=null)
 	{
 		$this->log('ResultsController result() - entering ...',LOG_DEBUG);

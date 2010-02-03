@@ -7,6 +7,11 @@ class SearchController extends SuperController
 
 	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
 
+	function beforeRender()
+	{
+		$this->set('menu', 'search');
+	}
+	
 	function index()
 	{
 		$this->log('SearchController index() - entering ...',LOG_DEBUG);
