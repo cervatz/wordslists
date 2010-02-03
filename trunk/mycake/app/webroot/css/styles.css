@@ -137,6 +137,7 @@ list-style-image: /img/arrow.gif;
 	padding:0 5px;
 	text-decoration:none;
 }
+
 .navigation a:hover{
 	text-decoration:none;
 }
@@ -188,8 +189,7 @@ background:transparent url(../img/sites_nav_bg_2.png) no-repeat bottom center;
 }
 
 #top_left_nav li.current a{
-	color:#fff;
-
+	color:#333333;
 }
 
 #search{
