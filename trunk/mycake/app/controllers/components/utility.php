@@ -79,10 +79,9 @@ class UtilityComponent extends Object {
 		
 			$users = $this->User->find
 				(
-					'list',  
+					'all',  
 					array
 						('conditions' => array("User.id" => $myfriends),
-	                     'fields' => array('id', 'username', 'first_name', 'last_name'),  
 	                     'order' => 'username ASC',  
 	                     'recursive' => -1  
 					)

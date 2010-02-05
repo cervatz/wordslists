@@ -52,7 +52,7 @@ class MessagesController extends SuperController
 			$users = $this->Utility->getUsers($id);
 		}
 		
-		//$this->log($this->Utility->getUsers($id),LOG_DEBUG);
+		$this->log($this->Utility->getFriends(),LOG_DEBUG);
 
 		if ($users!=null) {
 			
