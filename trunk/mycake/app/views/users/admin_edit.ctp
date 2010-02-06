@@ -12,7 +12,7 @@ else $publicChecked=false;
 
 ?>
 
-<?=$form->create('User', array('action' => 'edit'));?>
+<?=$form->create('User', array('action' => 'edit', 'autocomplete' => "off"));?>
 <li>	
 	<ul><?=$form->input('id', array('value'=>$user['User']['id'])); ?></ul>
 	<li><?=$form->input('username', array('label' => __('label_username', true), 'type'=>'text', 'value'=>$user['User']['username'])); ?> </li>

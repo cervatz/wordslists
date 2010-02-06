@@ -1,7 +1,7 @@
 <!-- TODO the add user and edit user are the same, use only one -->
 
 <div class="users_add">
-<?=$form->create('User');?>
+<?=$form->create('User', array('autocomplete' => "off"));?>
 <ul>	
 	<li><?=$form->input('id'); ?></li>
 	<li><?=$form->input('username', array('label' => __('label_username', true), 'type'=>'text', 'value'=>'', 'class' => 'required')); ?> </li>
