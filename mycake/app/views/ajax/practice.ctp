@@ -3,6 +3,7 @@
                              'options' => array('model' => 'Line',
                                                 'update' => 'ajaxDiv',
                                                 'id' => 'form_id',
+												'autocomplete' => "off",
                                                 'url' => array('controller' => 'ajax',
                                                                'action' => 'checkLine'))));
    ?>
