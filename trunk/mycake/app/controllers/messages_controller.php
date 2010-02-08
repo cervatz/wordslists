@@ -23,6 +23,7 @@ class MessagesController extends SuperController
 				'order' => array('Message.date DESC')
 			));			
 
+		$this->Session->write('Message', null);
 		$this->set('messages', $messages);
 	}
 	

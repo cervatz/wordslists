@@ -46,6 +46,7 @@ class FriendsController extends SuperController
 		$this->pageTitle = 'My friends';
 		
 		$this->Friend->unbindModel(array('hasMany' => array('Message1','Message2')));
+		$this->Session->write('Message', null);
 		
 		$friends = $this->Friend->find('all',
 			array(
