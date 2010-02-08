@@ -47,12 +47,12 @@ class MessagesController extends SuperController
 		$this->log('MessagesController add() - entering ...'.$id,LOG_DEBUG);
 		
 		if ($id==null) {
-			$users = $this->Utility->getFriends();
+			$users = $this->User->getFriends($this->Security->retrieveUserId());
 		} else {
 			$users = $this->Utility->getUsers($id);
 		}
 		
-		$this->log($this->Utility->getFriends(),LOG_DEBUG);
+		//$this->log($users,LOG_DEBUG);
 
 		if ($users!=null) {
 			

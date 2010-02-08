@@ -26,7 +26,7 @@ class Wordslist extends AppModel
                  )
                  
              );
-             
+ /*            
 	//TODO: improve validation checks
 	             
 	var $validate = array(
@@ -34,6 +34,6 @@ class Wordslist extends AppModel
 		'description' => VALID_NOT_EMPTY,
 		'language_id1' => VALID_NOT_EMPTY,
 		'language_id2' => VALID_NOT_EMPTY
-	);
+	);*/
 }
 ?>

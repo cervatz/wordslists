@@ -10,7 +10,7 @@ class Line extends AppModel
                   'foreignKey'   => 'wordslist_id'
                  )                 
              );
-             
+/*             
 	//TODO: improve validation checks
 		
 	var $validate = array(
@@ -18,7 +18,7 @@ class Line extends AppModel
 		'string2' => VALID_NOT_EMPTY
 	);
 
-
+*/
 }
 
 ?>

@@ -46,8 +46,8 @@ class UtilityComponent extends Object {
 			
 			
 		return $users; 
-	}	
-
+	}
+/*
 	function getFriends()
 	{
 
@@ -92,8 +92,8 @@ class UtilityComponent extends Object {
 			
 			return null; 
 		}
-	}	
-
+	}*/
+	
 	function getCountries()
 	{
 		if (App::import('Model', 'Country')) {			 

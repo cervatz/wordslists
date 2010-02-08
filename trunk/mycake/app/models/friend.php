@@ -4,21 +4,21 @@ class Friend extends AppModel
 	var $name = 'Friend';
 	
 	var $hasMany = array(		
-	    'Message1' => array(
+	    'Mittente' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id1',
 			),
-		'Message2' => array(
+		'Ricevente' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id2',
 			));	
 	
 	var $belongsTo = array(
-				 'User1' =>
+				 'Richiedente' =>
                  array('className'    => 'User',
                      'foreignKey'   => 'user_id1'
                  ),
-				 'User2' =>
+				 'Richiesto' =>
                  array('className'    => 'User',
                      'foreignKey'   => 'user_id2'
                  )

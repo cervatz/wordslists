@@ -5,19 +5,19 @@ class User extends AppModel
 	var $name = 'User';
 
 	var $hasMany = array('Wordslist','Mother','Practice','Result',	
-	    'Message1' => array(
+	    'Mittente' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id1',
 			),
-		'Message2' => array(
+		'Ricevente' => array(
 			'className' => 'Message',
 			'foreignKey' => 'user_id2',
 			),		
-	    'Friend1' => array(
+	    'Richiedente' => array(
 			'className' => 'Friend',
 			'foreignKey' => 'user_id1',
 			),
-		'Friend2' => array(
+		'Richiesto' => array(
 			'className' => 'Friend',
 			'foreignKey' => 'user_id2',
 			));
@@ -77,6 +77,37 @@ class User extends AppModel
 		if(empty($user) == false) return $user['User'];
 		return false;
 	}
+	
+	function getFriends($id)
+	{
+		$this->log('users_controller.getFriends entering.. ',LOG_DEBUG);
+		
+/*		if (App::import('Model', 'User')) {			 
+			$this->User = new User();
+		}	*/	
+		
+		// Semplificata utilizzando il metodo query
+		$sql = "SELECT users.id, users.username, users.first_name, users.last_name "
+  			." FROM mycake.friends friends "
+     		."    , mycake.users users "
+ 			." WHERE friends.status = 1 "
+   			." AND friends.user_id1 = " . $id
+   			." AND users.id = friends.user_id2 ";
+   			
+   		//$this->log($sql,LOG_DEBUG);
+   			
+		$users = $this->query($sql);
+		
+		foreach ($users as $myarray) {
+			$this->log($myarray,LOG_DEBUG);
+			$myfriends[$myarray['users']['id']] = ucfirst($myarray['users']['first_name']).' '.ucfirst($myarray['users']['last_name']);
+		}		
+		
+		//$this->log($myfriends,LOG_DEBUG);
+		
+		return $myfriends;
+		
+	}	
 }
 
 ?>
