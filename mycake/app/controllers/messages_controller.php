@@ -5,7 +5,7 @@ class MessagesController extends SuperController
 
 	var $uses = array('Message','User');
 
-	var $components = array('RequestHandler', 'Security', 'Session', 'Utility');
+	var $components = array('RequestHandler', 'Security', 'Session');//, 'Utility');
 	
 	function beforeRender()
 	{
@@ -24,7 +24,6 @@ class MessagesController extends SuperController
 			));			
 
 		$this->set('messages', $messages);
-		
 	}
 	
 	function loadAndSetMessage($id = null)
@@ -39,19 +38,19 @@ class MessagesController extends SuperController
 		//$this->log($myMessage,LOG_DEBUG);			
 	
 		$this->Session->write('Message', $myMessage);
-	
-	}	
+	}
 	
 	function add($id = null)
 	{
 		$this->log('MessagesController add() - entering ...'.$id,LOG_DEBUG);
 		
-		if ($id==null) {
+/*		if ($id==null) {
 			$users = $this->User->getFriends($this->Security->retrieveUserId());
 		} else {
-			$users = $this->Utility->getUsers($id);
-		}
+			$users = $this->User->getUsers($this->Security->retrieveUserId(), $id);
+		}*/
 		
+		$users = $this->User->getFriends($this->Security->retrieveUserId(), $id);
 		//$this->log($users,LOG_DEBUG);
 
 		if ($users!=null) {

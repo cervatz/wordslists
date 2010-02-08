@@ -27,7 +27,7 @@ class UtilityComponent extends Object {
 		return $languages; 
 	}
 	
-	function getUsers($id)
+/*	function getUsers($id)
 	{
 
 		if (App::import('Model', 'User')) {			 
@@ -46,7 +46,7 @@ class UtilityComponent extends Object {
 			
 			
 		return $users; 
-	}
+	}*/
 /*
 	function getFriends()
 	{
