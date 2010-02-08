@@ -82,15 +82,6 @@ class MessagesController extends SuperController
 		}
 	}
 	
-	function reply()
-	{
-		$this->log('MessagesController reply() - entering ...',LOG_DEBUG);
-
-		$this->pageTitle = 'New Message';
-		
-		$this->set('myJsFile','MessageAddForm');
-	}	
-	
 	function view($id = null)
 	{
 		$this->log('MessagesController edit() - entering ...',LOG_DEBUG);
