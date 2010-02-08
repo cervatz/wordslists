@@ -13,7 +13,7 @@
 	<?php foreach ($messages as $message): ?>
 	<tr>
 		<td><?=$message['Message']['id']; ?></td>
-		<td><?=$message['User1']['first_name']; ?>&nbsp;<?=$message['User1']['last_name']; ?></td>
+		<td><?=$message['Mittente']['first_name']; ?>&nbsp;<?=$message['Mittente']['last_name']; ?></td>
 		<td><?=$message['Message']['object']; ?></td>
 		<td><?=$message['Message']['date']; ?></td>
 		

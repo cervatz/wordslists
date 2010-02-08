@@ -3,11 +3,11 @@ class Message extends AppModel
 {
 	var $name = 'Message';
 	var $belongsTo = array(
-				 'User1' =>
+				 'Mittente' =>
                  array('className'    => 'User',
                      'foreignKey'   => 'user_id1'
                  ),
-				 'User2' =>
+				 'Ricevente' =>
                  array('className'    => 'User',
                      'foreignKey'   => 'user_id2'
                  )

@@ -1,6 +1,6 @@
 <?php $mymessage = $session->read('Message');?>
 
-Rispondi a: <b><?=$mymessage['User1']['username'];?></b>
+Rispondi a: <b><?=$mymessage['Mittente']['username'];?></b>
 
 <?php echo $form->create('Message');?>
 

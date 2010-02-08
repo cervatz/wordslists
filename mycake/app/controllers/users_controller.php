@@ -92,7 +92,7 @@ class UsersController extends SuperController
 		
 		$this->set('languages', $this->Session->read('Languages'));
 		
-		//$this->log('UsersController add() - 1',LOG_DEBUG);
+		$this->log($this->Session->read('Countries'),LOG_DEBUG);
 		
 		$this->set('myJsFile','UserAddForm');
 						
@@ -434,5 +434,6 @@ class UsersController extends SuperController
 		if ($count[0][0]['count']==null || $count[0][0]['count']>0) return false;
 		else return true;
 	}		
+		
 }
 ?>

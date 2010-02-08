@@ -50,7 +50,7 @@ class FriendsController extends SuperController
 		$friends = $this->Friend->find('all',
 			array(
 				'conditions' => array('Friend.user_id1' => $this->Security->retrieveUserId()),
-				'order' => array('Friend.status DESC', 'User2.username')
+				'order' => array('Friend.status DESC', 'Richiesto.username')
 			));		
 
 		$requests = $this->Friend->find('all',
@@ -58,7 +58,7 @@ class FriendsController extends SuperController
 				'conditions' => array('Friend.user_id2' => $this->Security->retrieveUserId(),
 									  'Friend.status' => 0
 									 ),
-				'order' => array('User2.username')
+				'order' => array('Richiesto.username')
 			));
 
 		$this->set('friends', $friends);
