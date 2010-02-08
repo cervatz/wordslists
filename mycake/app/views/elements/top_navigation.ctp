@@ -4,14 +4,15 @@ $styles = array('users'=>'','friends'=>'','wordslists'=>'','languages'=>'','mess
 if(isset($menu)) $styles[$menu]='current'; 
 ?>
 
-<ul class="navigation">	
-	<?php if($session->read('User.administrator') == 1) {?>
+<ul class="navigation">
+	<li class="<?=$styles['users']?>"><?php echo $html->link('Users', array('admin' => true, 'controller'=>'users', 'action' => 'index'), array('escape' => false));?></li>	
+<!--	<?php if($session->read('User.administrator') == 1) {?>
 			<li class="<?=$styles['users']?>"><?php echo $html->link('Users', array('admin' => true, 'controller'=>'users', 'action' => 'index'), array('escape' => false));?></li>
 	<?php } else {?>
 		<?php if($user['User']['administrator']==1) {?>			
 			<li class="<?=$styles['friends']?>"><?php echo $html->link('Friends', array('admin' => false, 'controller'=>'friends', 'action' => 'index'), array('escape' => false));?></li>
 		<?php }?>	
-	<?php }?>
+	<?php }?> -->
 	<li class="<?=$styles['wordslists']?>"><?php echo $html->link('My wordslists', array('admin' => false, 'controller'=>'wordslists', 'action' => 'mylists'), array('escape' => false));?></li>
 	<li class="<?=$styles['languages']?>"><?php echo $html->link('Languages', array('admin' => false, 'controller'=>'languages', 'action' => 'index'), array('escape' => false));?></li>
 	<li class="<?=$styles['messages']?>"><?php echo $html->link('Messages', array('admin' => false, 'controller'=>'messages', 'action' => 'mymessages'), array('escape' => false));?></li>	
