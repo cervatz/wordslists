@@ -1,33 +1,21 @@
+<div id="dialog" title="Invio messaggio">
+
 <?php echo $form->create('Message');?>
 
 <ul>
-<li><?php echo $form->input('id'); ?></li>
+<?php echo $form->input('id'); ?>
 
-<?php if (count($users)>1) { ?>
+<?php echo $form->input('user_id2',array(  
+	'label' => __('label_user_id2', true),
+	'class' => 'required',
+	'type' => 'select',
+	'options'=>$users,  
+	'empty' => __('value_select_user', true)       
+));?>
 
-<li>
-	<?php echo $form->input('user_id2',array(  
-        	'label' => __('label_user_id2', true),
-        	'class' => 'required',
-        	'type' => 'select',
-        	'options'=>$users,  
-			'empty' => __('value_select_user', true)       
-     	));?>
-</li>
+<?php echo $form->input('object', array('class' => 'required')); ?>
+<?php echo $form->input('text', array('class' => 'required')); ?>
 
-<?php 
-	} else if (count($users)==1) {
-		foreach ($users as $user):
-			echo $form->input('user_id2', array('type' => 'hidden', 'class' => 'required', 'value' => $user['User']['id']));
-			echo 'Invia messaggio a: '.$user['User']['username'];
-		endforeach;
-	} 
-?>
+<?php echo $form->end();?>
 
-
-
-<li><?php echo $form->input('object', array('class' => 'required')); ?></li>
-<li><?php echo $form->input('text', array('class' => 'required')); ?></li>
-
-</ul>
-<?php echo $form->end('Submit');?>
+</div>

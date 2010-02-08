@@ -78,7 +78,7 @@ class User extends AppModel
 		return false;
 	}
 	
-	function getFriends($id)
+	function getFriends($myid, $id=null)
 	{
 		$this->log('users_controller.getFriends entering.. ',LOG_DEBUG);
 		
@@ -91,15 +91,19 @@ class User extends AppModel
   			." FROM mycake.friends friends "
      		."    , mycake.users users "
  			." WHERE friends.status = 1 "
-   			." AND friends.user_id1 = " . $id
+   			." AND friends.user_id1 = " . $myid
    			." AND users.id = friends.user_id2 ";
+   			
+   		if ($id!=null) {
+   			$sql = $sql . " AND users.id = $id ";
+   		}
    			
    		//$this->log($sql,LOG_DEBUG);
    			
 		$users = $this->query($sql);
 		
 		foreach ($users as $myarray) {
-			$this->log($myarray,LOG_DEBUG);
+			//$this->log($myarray,LOG_DEBUG);
 			$myfriends[$myarray['users']['id']] = ucfirst($myarray['users']['first_name']).' '.ucfirst($myarray['users']['last_name']);
 		}		
 		
@@ -108,6 +112,25 @@ class User extends AppModel
 		return $myfriends;
 		
 	}	
+	
+/*	function getUsers($myid, $id)
+	{
+
+		$sql = "SELECT users.id, users.username, users.first_name, users.last_name "
+  			." FROM mycake.friends friends "
+     		."    , mycake.users users "
+ 			." WHERE friends.status = 1 "
+   			." AND friends.user_id1 = " . $id
+   			." AND users.id = friends.user_id2 ";		
+		
+		$users = $this->query($sql);
+			
+		foreach ($users as $myarray) {
+			$myusers[$myarray['users']['id']] = ucfirst($myarray['users']['first_name']).' '.ucfirst($myarray['users']['last_name']);
+		}		
+			
+		return $myusers; 
+	}	*/
 }
 
 ?>
