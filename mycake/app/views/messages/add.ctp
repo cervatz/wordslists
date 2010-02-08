@@ -1,3 +1,11 @@
+<?php 
+	$mymessage = $session->read('Message');
+	$messaggeObject = '';
+	if ($mymessage['Message']['object']!=null) {
+		$messaggeObject = 'Re: '.$mymessage['Message']['object'];
+	}
+?>
+
 <div id="dialog" title="Invio messaggio">
 
 <?php echo $form->create('Message');?>
@@ -13,7 +21,7 @@
 	'empty' => __('value_select_user', true)       
 ));?>
 
-<?php echo $form->input('object', array('class' => 'required')); ?>
+<?php echo $form->input('object', array('class' => 'required', 'value' => $messaggeObject)); ?>
 <?php echo $form->input('text', array('class' => 'required')); ?>
 
 <?php echo $form->end();?>
